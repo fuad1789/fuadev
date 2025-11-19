@@ -22,7 +22,6 @@ export interface Translations {
       description: string;
       status: string;
       highlight: string;
-      tags: string[];
       linkLabel: string;
       linkUrl: string;
     }>;
@@ -82,7 +81,6 @@ export const translations: Record<Language, Translations> = {
           status: "Status: Platforma hazırda aktivdir, amma istifadə olunmur.",
           highlight:
             "Bu ideyaya görə SUPVC tərəfindən 2000 AZN məbləğində mükafat qazanmışıq və inkubasiya proqramında iştirak etmişəm.",
-          tags: ["Full-stack development", "Marketplace", "Startup ideyası"],
           linkLabel: "Sayta keçid",
           linkUrl: "https://payla.az",
         },
@@ -94,7 +92,6 @@ export const translations: Record<Language, Translations> = {
           status: "Status: Layihə hazırda aktivdir və istifadə olunur.",
           highlight:
             "Tələbələr üçün praktiki və real istifadə olunan bir platforma kimi qurulub.",
-          tags: ["Web platforma", "Tələbə ekosistemi"],
           linkLabel: "Sayta keçid",
           linkUrl: "https://unim.az",
         },
@@ -106,9 +103,18 @@ export const translations: Record<Language, Translations> = {
           status: "Status: Aktiv istifadə olunan rəsmi karyera səhifəsidir.",
           highlight:
             "Universitetin rəsmi strukturu üçün hazırlanmış, sadə və aydın karyera səhifəsi.",
-          tags: ["Rəsmi web sayt", "Universitet", "Karyera"],
           linkLabel: "Sayta keçid",
           linkUrl: "https://karyera.sdu.edu.az",
+        },
+        {
+          name: "Loyaltybar",
+          label: "Bərbərxana İdarəetmə Sistemi",
+          description:
+            "Bərbərxanaların idarə edilməsi üçün kompleks həll: Admin panel, Biznes paneli, Mobil tətbiq və Server. QR kod skaneri, növbə idarəetməsi və statistika kimi funksiyaları əhatə edir.",
+          status: "Status: Açıq mənbəli layihə.",
+          highlight: "4 fərqli komponentdən ibarət geniş miqyaslı ekosistem.",
+          linkLabel: "GitHub-a keçid",
+          linkUrl: "https://github.com/fuad1789/Loyaltybar",
         },
       ],
     },
@@ -179,7 +185,6 @@ export const translations: Record<Language, Translations> = {
             "Status: The platform is live but not actively used at the moment.",
           highlight:
             "The idea received a 2000 AZN award from SUPVC, and I participated in an incubation program with this project.",
-          tags: ["Full-stack development", "Marketplace", "Startup idea"],
           linkLabel: "Visit website",
           linkUrl: "https://payla.az",
         },
@@ -191,7 +196,6 @@ export const translations: Record<Language, Translations> = {
           status: "Status: The project is live and in use.",
           highlight:
             "Designed as a practical, real-world platform for students.",
-          tags: ["Web platform", "Student ecosystem"],
           linkLabel: "Visit website",
           linkUrl: "https://unim.az",
         },
@@ -203,9 +207,19 @@ export const translations: Record<Language, Translations> = {
           status: "Status: Actively used as an official career page.",
           highlight:
             "A clean and clear career page created for an official university structure.",
-          tags: ["Official website", "University", "Career"],
           linkLabel: "Visit website",
           linkUrl: "https://karyera.sdu.edu.az",
+        },
+        {
+          name: "Loyaltybar",
+          label: "Barbershop Management System",
+          description:
+            "A comprehensive solution for barbershop management: Admin panel, Business panel, Mobile app, and Server. Includes features like QR code scanner, queue management, and statistics.",
+          status: "Status: Open source project.",
+          highlight:
+            "A large-scale ecosystem consisting of 4 different components.",
+          linkLabel: "View on GitHub",
+          linkUrl: "https://github.com/fuad1789/Loyaltybar",
         },
       ],
     },

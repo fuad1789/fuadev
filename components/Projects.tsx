@@ -46,16 +46,7 @@ export default function Projects() {
                 <p className="text-xs text-gray-400 leading-relaxed">{project.highlight}</p>
               </div>
               
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs bg-white/10 rounded-md text-gray-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+
               
               <a
                 href={project.linkUrl}
