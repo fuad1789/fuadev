@@ -29,7 +29,8 @@ export interface Translations {
   };
   skills: {
     title: string;
-    items: string[];
+    services: string[];
+    technologies: Array<{ name: string; icon: string }>;
   };
   experimental: {
     title: string;
@@ -112,14 +113,22 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     skills: {
-      title: "Qısa olaraq bacardıqlarım",
-      items: [
+      title: "Bacarıqlar və Texnologiyalar",
+      services: [
         "Full-stack web development",
         "Mobil tətbiq inkişafı",
         "AI dəstəyi ilə məhsul dizaynı",
-        "JavaScript, React / Next.js, Node.js",
-        "Tailwind CSS, MongoDB",
-        "Git, GitHub, Figma",
+      ],
+      technologies: [
+        { name: "JavaScript", icon: "SiJavascript" },
+        { name: "TypeScript", icon: "SiTypescript" },
+        { name: "React", icon: "SiReact" },
+        { name: "Next.js", icon: "SiNextdotjs" },
+        { name: "Node.js", icon: "SiNodedotjs" },
+        { name: "Tailwind CSS", icon: "SiTailwindcss" },
+        { name: "MongoDB", icon: "SiMongodb" },
+        { name: "Git", icon: "SiGit" },
+        { name: "Figma", icon: "SiFigma" },
       ],
     },
     experimental: {
@@ -201,14 +210,22 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     skills: {
-      title: "What I work with",
-      items: [
+      title: "Skills & Technologies",
+      services: [
         "Full-stack web development",
         "Mobile app development",
         "AI-supported product design",
-        "JavaScript, React / Next.js, Node.js",
-        "Tailwind CSS, MongoDB",
-        "Git, GitHub, Figma",
+      ],
+      technologies: [
+        { name: "JavaScript", icon: "SiJavascript" },
+        { name: "TypeScript", icon: "SiTypescript" },
+        { name: "React", icon: "SiReact" },
+        { name: "Next.js", icon: "SiNextdotjs" },
+        { name: "Node.js", icon: "SiNodedotjs" },
+        { name: "Tailwind CSS", icon: "SiTailwindcss" },
+        { name: "MongoDB", icon: "SiMongodb" },
+        { name: "Git", icon: "SiGit" },
+        { name: "Figma", icon: "SiFigma" },
       ],
     },
     experimental: {
