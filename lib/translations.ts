@@ -24,6 +24,7 @@ export interface Translations {
       highlight: string;
       linkLabel: string;
       linkUrl: string;
+      image?: string;
     }>;
   };
   skills: {
@@ -70,8 +71,7 @@ export const translations: Record<Language, Translations> = {
     },
     projects: {
       title: "Layihələr",
-      subtitle:
-        "Real istifadə olunmuş və ya inkubasiya proqramlarından keçmiş əsas işlərim.",
+      subtitle: "Real istifadə olunmuş və istifadə olunmuş əsas işlərim.",
       items: [
         {
           name: "Payla.az",
@@ -83,6 +83,7 @@ export const translations: Record<Language, Translations> = {
             "Bu ideyaya görə SUPVC tərəfindən 2000 AZN məbləğində mükafat qazanmışıq və inkubasiya proqramında iştirak etmişəm.",
           linkLabel: "Sayta keçid",
           linkUrl: "https://payla.az",
+          image: "/paylaaz.png",
         },
         {
           name: "Unim.az",
@@ -94,6 +95,7 @@ export const translations: Record<Language, Translations> = {
             "Tələbələr üçün praktiki və real istifadə olunan bir platforma kimi qurulub.",
           linkLabel: "Sayta keçid",
           linkUrl: "https://unim.az",
+          image: "/unimaz.png",
         },
         {
           name: "karyera.sdu.edu.az",
@@ -105,6 +107,7 @@ export const translations: Record<Language, Translations> = {
             "Universitetin rəsmi strukturu üçün hazırlanmış, sadə və aydın karyera səhifəsi.",
           linkLabel: "Sayta keçid",
           linkUrl: "https://karyera.sdu.edu.az",
+          image: "/sdukaryera.png",
         },
         {
           name: "Loyaltybar",
@@ -115,6 +118,7 @@ export const translations: Record<Language, Translations> = {
           highlight: "4 fərqli komponentdən ibarət geniş miqyaslı ekosistem.",
           linkLabel: "GitHub-a keçid",
           linkUrl: "https://github.com/fuad1789/Loyaltybar",
+          image: "/loyaltybar.png",
         },
       ],
     },
@@ -174,7 +178,7 @@ export const translations: Record<Language, Translations> = {
     },
     projects: {
       title: "Projects",
-      subtitle: "A few of the real, shipped products I've worked on.",
+      subtitle: "My main products, real and used",
       items: [
         {
           name: "Payla.az",
@@ -187,6 +191,7 @@ export const translations: Record<Language, Translations> = {
             "The idea received a 2000 AZN award from SUPVC, and I participated in an incubation program with this project.",
           linkLabel: "Visit website",
           linkUrl: "https://payla.az",
+          image: "/paylaaz.png",
         },
         {
           name: "Unim.az",
@@ -198,6 +203,7 @@ export const translations: Record<Language, Translations> = {
             "Designed as a practical, real-world platform for students.",
           linkLabel: "Visit website",
           linkUrl: "https://unim.az",
+          image: "/unimaz.png",
         },
         {
           name: "karyera.sdu.edu.az",
@@ -209,6 +215,7 @@ export const translations: Record<Language, Translations> = {
             "A clean and clear career page created for an official university structure.",
           linkLabel: "Visit website",
           linkUrl: "https://karyera.sdu.edu.az",
+          image: "/sdukaryera.png",
         },
         {
           name: "Loyaltybar",
@@ -220,6 +227,7 @@ export const translations: Record<Language, Translations> = {
             "A large-scale ecosystem consisting of 4 different components.",
           linkLabel: "View on GitHub",
           linkUrl: "https://github.com/fuad1789/Loyaltybar",
+          image: "/loyaltybar.png",
         },
       ],
     },
