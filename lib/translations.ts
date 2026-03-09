@@ -69,59 +69,62 @@ export const translations: Record<Language, Translations> = {
       extraLine:
         "Gündəlik JavaScript, React / Next.js, Node.js, Tailwind CSS, MongoDB və müasir məhsul alətləri ilə işləyirəm.",
     },
-    projects: {
-      title: "Layihələr",
-      subtitle: "Real istifadə olunmuş və istifadə olunmuş əsas işlərim.",
-      items: [
-        {
-          name: "Payla.az",
-          label: "Marketplace · Kirayə geyim",
-          description:
-            "Payla.az kirayə geyim üçün hazırlanmış marketplace platformasıdır. İstifadəçilər geyimlərini əlavə edib kirayəyə verə, digərləri isə uyğun geyimləri tapa bilirdi.",
-          status: "Status: Platforma hazırda aktivdir, amma istifadə olunmur.",
-          highlight:
-            "Bu ideyaya görə SUPVC tərəfindən 2000 AZN məbləğində mükafat qazanmışıq və inkubasiya proqramında iştirak etmişəm.",
-          linkLabel: "Sayta keçid",
-          linkUrl: "https://payla.az",
-          image: "/paylaaz.png",
-        },
-        {
-          name: "Unim.az",
-          label: "Tələbələr üçün platforma",
-          description:
-            "Unim.az tələbələr üçün yaradılmış platformadır. Universitet mühiti üçün uyğunlaşdırılmış, tələbələrin gündəlik ehtiyaclarını nəzərə alan bir web layihədir.",
-          status: "Status: Layihə hazırda aktivdir və istifadə olunur.",
-          highlight:
-            "Tələbələr üçün praktiki və real istifadə olunan bir platforma kimi qurulub.",
-          linkLabel: "Sayta keçid",
-          linkUrl: "https://unim.az",
-          image: "/unimaz.png",
-        },
-        {
-          name: "karyera.sdu.edu.az",
-          label: "Karyera səhifəsi · SDU",
-          description:
-            "Sumqayıt Dövlət Universitetinin rəsmi karyera səhifəsini hazırlamışam. Bu səhifə universitetin tələbələri üçün karyera ilə bağlı məlumatları, fürsətləri və elanları toplamaq üçün nəzərdə tutulub.",
-          status: "Status: Aktiv istifadə olunan rəsmi karyera səhifəsidir.",
-          highlight:
-            "Universitetin rəsmi strukturu üçün hazırlanmış, sadə və aydın karyera səhifəsi.",
-          linkLabel: "Sayta keçid",
-          linkUrl: "https://karyera.sdu.edu.az",
-          image: "/sdukaryera.png",
-        },
-        {
-          name: "Loyaltybar",
-          label: "Bərbərxana İdarəetmə Sistemi",
-          description:
-            "Bərbərxanaların idarə edilməsi üçün kompleks həll: Admin panel, Biznes paneli, Mobil tətbiq və Server. QR kod skaneri, növbə idarəetməsi və statistika kimi funksiyaları əhatə edir.",
-          status: "Status: Açıq mənbəli layihə.",
-          highlight: "4 fərqli komponentdən ibarət geniş miqyaslı ekosistem.",
-          linkLabel: "GitHub-a keçid",
-          linkUrl: "https://github.com/fuad1789/Loyaltybar",
-          image: "/loyaltybar.png",
-        },
-      ],
+   projects: {
+  title: "Layihələr",
+  subtitle: "Real biznes mühitində və rəsmi qurumlarda istifadə olunan əsas işlərim.",
+  items: [
+    {
+      name: "Azeri Edu",
+      label: "Tədris İdarəetmə Sistemi (LMS) · High-Load",
+      description: "Kurs mərkəzləri üçün sıfırdan dizayn edilmiş və inkişaf etdirilmiş irimiqyaslı tədris platforması. Sistemə Google OAuth ilə təhlükəsiz giriş, müasir admin paneli və real vaxtlı ziyarətçi analitikası inteqrasiya edilib.",
+      status: "Status: Tam aktivdir və canlı (production) mühitdə istifadə olunur.",
+      highlight: "20.000+ anlıq istifadəçi sorğusuna tab gətirən gücləndirilmiş server arxitekturası (Next.js, MongoDB, Nginx, PM2 Cluster).",
+      linkLabel: "Sayta keçid",
+      linkUrl: "https://azeri.edu.az", // Linki dəqiq domeninlə əvəz edərsən
+      image: "/azeri-edu.png", // Şəklin adını özünə uyğun yazarsan
     },
+    {
+      name: "Payla.az",
+      label: "C2C Marketplace · Startup",
+      description: "İstifadəçilərin geyimlərini kirayəyə verə və ya uyğun geyim tapa biləcəyi Peer-to-Peer (C2C) e-ticarət platforması. Prosesləri avtomatlaşdıran tam funksional marketplace arxitekturası üzərində qurulub.",
+      status: "Status: Platforma texniki olaraq aktivdir.",
+      highlight: "Bu innovativ ideyaya görə SUPVC tərəfindən 2000 AZN mükafat qazanaraq rəsmi inkubasiya proqramına qəbul edilmişəm.",
+      linkLabel: "Sayta keçid",
+      linkUrl: "https://payla.az",
+      image: "/paylaaz.png",
+    },
+    {
+      name: "karyera.sdu.edu.az",
+      label: "Rəsmi Karyera Portalı · SDU",
+      description: "Sumqayıt Dövlət Universitetinin rəsmi karyera mərkəzi üçün xüsusi olaraq hazırlanmış veb-platforma. Tələbə və məzunları iş imkanları, təqaüdlər və elanlarla təmin edən mərkəzləşdirilmiş sistemdir.",
+      status: "Status: Universitet tərəfindən rəsmi olaraq istifadə olunur.",
+      highlight: "Dövlət universitetinin standartlarına və strukturuna cavab verən tam optimal və təhlükəsiz veb həll.",
+      linkLabel: "Sayta keçid",
+      linkUrl: "https://karyera.sdu.edu.az",
+      image: "/sdukaryera.png",
+    },
+    {
+      name: "Unim.az",
+      label: "Tələbə Ekosistemi · SaaS",
+      description: "Tələbələrin gündəlik akademik və sosial ehtiyaclarını rəqəmsallaşdırmaq üçün hazırlanmış kompleks platforma. Universitet mühitinə tam uyğunlaşdırılmış interfeys və istifadəçi təcrübəsi təqdim edir.",
+      status: "Status: Layihə aktivdir və real istifadəçiləri var.",
+      highlight: "Tələbə həyatını asanlaşdırmaq üçün praktiki funksionallıqlarla təchiz edilmiş mərkəzi portal.",
+      linkLabel: "Sayta keçid",
+      linkUrl: "https://unim.az",
+      image: "/unimaz.png",
+    },
+    {
+      name: "Loyaltybar",
+      label: "Bərbərxana İdarəetmə Sistemi (SaaS)",
+      description: "Bərbərxana və salon bizneslərinin tam avtomatlaşdırılması üçün yaradılmış ekosistem. Sistem QR kod skaneri, rəqəmsal növbə idarəetməsi və detallı maliyyə/müştəri statistikası funksiyalarını əhatə edir.",
+      status: "Status: Açıq mənbəli (Open-source) layihə.",
+      highlight: "Admin panel, Biznes paneli, Mobil tətbiq və Server daxil olmaqla 4 fərqli texnoloji komponentdən ibarət kompleks arxitektura.",
+      linkLabel: "GitHub-a keçid",
+      linkUrl: "https://github.com/fuad1789/Loyaltybar",
+      image: "/loyaltybar.png",
+    },
+  ],
+},
     skills: {
       title: "Bacarıqlar və Texnologiyalar",
       services: [
@@ -176,61 +179,62 @@ export const translations: Record<Language, Translations> = {
       extraLine:
         "Day to day, I work with JavaScript, React / Next.js, Node.js, Tailwind CSS, MongoDB and modern product tools.",
     },
-    projects: {
-      title: "Projects",
-      subtitle: "My main products, real and used",
-      items: [
-        {
-          name: "Payla.az",
-          label: "Marketplace · Rental clothing",
-          description:
-            "Payla.az is a marketplace platform for renting clothing. Users could list their clothes for rent and others could discover and book them.",
-          status:
-            "Status: The platform is live but not actively used at the moment.",
-          highlight:
-            "The idea received a 2000 AZN award from SUPVC, and I participated in an incubation program with this project.",
-          linkLabel: "Visit website",
-          linkUrl: "https://payla.az",
-          image: "/paylaaz.png",
-        },
-        {
-          name: "Unim.az",
-          label: "Platform for students",
-          description:
-            "Unim.az is a platform built for students, tailored to the university environment and the needs of students in their daily academic life.",
-          status: "Status: The project is live and in use.",
-          highlight:
-            "Designed as a practical, real-world platform for students.",
-          linkLabel: "Visit website",
-          linkUrl: "https://unim.az",
-          image: "/unimaz.png",
-        },
-        {
-          name: "karyera.sdu.edu.az",
-          label: "Career page · SDU",
-          description:
-            "I built the official career page for Sumgayit State University. It is meant to gather career information, opportunities and announcements for students.",
-          status: "Status: Actively used as an official career page.",
-          highlight:
-            "A clean and clear career page created for an official university structure.",
-          linkLabel: "Visit website",
-          linkUrl: "https://karyera.sdu.edu.az",
-          image: "/sdukaryera.png",
-        },
-        {
-          name: "Loyaltybar",
-          label: "Barbershop Management System",
-          description:
-            "A comprehensive solution for barbershop management: Admin panel, Business panel, Mobile app, and Server. Includes features like QR code scanner, queue management, and statistics.",
-          status: "Status: Open source project.",
-          highlight:
-            "A large-scale ecosystem consisting of 4 different components.",
-          linkLabel: "View on GitHub",
-          linkUrl: "https://github.com/fuad1789/Loyaltybar",
-          image: "/loyaltybar.png",
-        },
-      ],
+   projects: {
+  title: "Projects",
+  subtitle: "High-impact products developed for real business and official environments.",
+  items: [
+    {
+      name: "Azeri Edu",
+      label: "Learning Management System (LMS) · High-Load",
+      description: "A large-scale educational platform engineered from scratch for educational centers. Features secure Google OAuth integration, a modern administrative dashboard, and real-time user analytics.",
+      status: "Status: Fully active and running in a live production environment.",
+      highlight: "Robust server architecture utilizing Next.js, MongoDB, Nginx, and PM2 Cluster, proven to handle 20,000+ concurrent requests (Load Tested).",
+      linkLabel: "Visit website",
+      linkUrl: "https://azeri.edu.az", // Adjust the link
+      image: "/azeri-edu.png", // Adjust the image name
     },
+    {
+      name: "Payla.az",
+      label: "C2C Marketplace · Startup",
+      description: "A Peer-to-Peer (C2C) e-commerce platform designed for clothing rentals. Engineered with a fully functional marketplace architecture to automate listings, discovery, and booking processes.",
+      status: "Status: The platform is technically live.",
+      highlight: "Awarded a 2000 AZN grant from SUPVC and successfully selected for an official startup incubation program.",
+      linkLabel: "Visit website",
+      linkUrl: "https://payla.az",
+      image: "/paylaaz.png",
+    },
+    {
+      name: "karyera.sdu.edu.az",
+      label: "Official Career Portal · SDU",
+      description: "The official career web platform developed specifically for Sumgayit State University. Serves as a centralized hub connecting students and alumni with job opportunities, internships, and university announcements.",
+      status: "Status: Actively used in production by the university.",
+      highlight: "A highly optimized and secure web solution meeting the strict standards of a state university structure.",
+      linkLabel: "Visit website",
+      linkUrl: "https://karyera.sdu.edu.az",
+      image: "/sdukaryera.png",
+    },
+    {
+      name: "Unim.az",
+      label: "Student Ecosystem · SaaS",
+      description: "A comprehensive digital ecosystem built to address the daily academic and social needs of university students. Features a highly tailored, user-centric interface designed specifically for the campus environment.",
+      status: "Status: Live project with active users.",
+      highlight: "A practical, real-world central portal equipped with tools to streamline student life.",
+      linkLabel: "Visit website",
+      linkUrl: "https://unim.az",
+      image: "/unimaz.png",
+    },
+    {
+      name: "Loyaltybar",
+      label: "Barbershop Management System (SaaS)",
+      description: "A complete automation ecosystem for barbershops and salons. The platform features an integrated QR code scanner, digital queue management, and comprehensive financial/customer statistics.",
+      status: "Status: Open-source project.",
+      highlight: "A large-scale, 4-tier architecture comprising an Admin panel, Business dashboard, Mobile application, and robust Backend server.",
+      linkLabel: "View on GitHub",
+      linkUrl: "https://github.com/fuad1789/Loyaltybar",
+      image: "/loyaltybar.png",
+    },
+  ],
+},
     skills: {
       title: "Skills & Technologies",
       services: [
