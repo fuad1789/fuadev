@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         alt: "Fuad Bağıyev Portfolio",
       },
     ],
-    locale: "az_AZ",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="az">
+    <html lang="en">
       <body>
         <ScrollProgress />
         {children}
