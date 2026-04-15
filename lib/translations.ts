@@ -76,9 +76,9 @@ export const translations: Record<Language, Translations> = {
     {
       name: "Azeri Edu",
       label: "Tədris İdarəetmə Sistemi (LMS) · High-Load",
-      description: "Kurs mərkəzlərinin tələbə, müəllim və kurs idarəetmə proseslərini vahid platformada birləşdirən LMS. Google OAuth autentifikasiyası, admin paneli üzərindən real vaxtlı analitika və kurs kontentinin idarəsi daxildir.",
-      status: "Canlı mühitdə fəal istifadə olunur.",
-      highlight: "20.000+ anlıq istifadəçi sorğusuna tab gətirən gücləndirilmiş server arxitekturası (Next.js, MongoDB, Nginx, PM2 Cluster).",
+      description: "Kurs mərkəzi üçün hazırlanmış tədris platforması. İmtahan cavablarının avtomatik yoxlanması, kurs yerləşdirmə, imtahan qeydiyyatı, Google OAuth ilə giriş və admin paneli üzərindən real vaxtlı analitika daxildir.",
+      status: "Hal-hazırda aktiv istifadədədir.",
+      highlight: "Next.js, MongoDB, Nginx və PM2 Cluster üzərində qurulmuş tam server arxitekturası ilə stabil production mühiti.",
       linkLabel: "Sayta keçid",
       linkUrl: "https://azeri.edu.az", // Linki dəqiq domeninlə əvəz edərsən
       image: "/azeri-edu.png", // Şəklin adını özünə uyğun yazarsan
@@ -87,7 +87,7 @@ export const translations: Record<Language, Translations> = {
       name: "Payla.az",
       label: "B2C / C2C Marketplace · Startup",
       description: "Geyim kirayəsi və satışı üçün B2C/C2C marketplace. Həm biznes, həm də fərdi istifadəçilər elan yerləşdirir, filtr və axtarış ilə uyğun geyim tapır, rezervasiya edir. Ödəniş axını, istifadəçi reytinqi və avtomatik bildirişlər daxildir.",
-      status: "Texniki olaraq aktiv.",
+      status: "Platforma aktivdir, inkişaf davam edir.",
       highlight: "Bu innovativ ideyaya görə SUPVC tərəfindən 2000 AZN mükafat qazanaraq rəsmi inkubasiya proqramına qəbul edilmişəm.",
       linkLabel: "Sayta keçid",
       linkUrl: "https://payla.az",
@@ -107,7 +107,7 @@ export const translations: Record<Language, Translations> = {
       name: "Unim.az",
       label: "Tələbə Ekosistemi · SaaS",
       description: "Tələbələr üçün akademik resurslar, kampus xəbərləri və sosial funksiyaları bir arada təqdim edən portal. Dərs cədvəli, elanlar və tələbələrarası ünsiyyət kimi gündəlik ehtiyacları əhatə edir.",
-      status: "Aktiv istifadəçi bazası ilə fəaliyyətdədir.",
+      status: "Aktivdir, real istifadəçiləri var.",
       highlight: "Tələbənin gündəlik kampus həyatını tək platformada sadələşdirən mərkəzi portal.",
       linkLabel: "Sayta keçid",
       linkUrl: "https://unim.az",
@@ -196,9 +196,9 @@ export const translations: Record<Language, Translations> = {
     {
       name: "Azeri Edu",
       label: "Learning Management System (LMS) · High-Load",
-      description: "A full-cycle LMS unifying student enrollment, instructor management, and course delivery for education centers. Includes Google OAuth, a real-time analytics dashboard, and content management for course materials.",
-      status: "Live in production.",
-      highlight: "Robust server architecture utilizing Next.js, MongoDB, Nginx, and PM2 Cluster, proven to handle 20,000+ concurrent requests (Load Tested).",
+      description: "An educational platform built for a course center. Features automated exam grading, course publishing, exam registration, Google OAuth authentication, and a real-time analytics dashboard.",
+      status: "Currently in active use.",
+      highlight: "Stable production environment built on Next.js, MongoDB, Nginx, and PM2 Cluster.",
       linkLabel: "Visit website",
       linkUrl: "https://azeri.edu.az", // Adjust the link
       image: "/azeri-edu.png", // Adjust the image name
@@ -207,7 +207,7 @@ export const translations: Record<Language, Translations> = {
       name: "Payla.az",
       label: "B2C / C2C Marketplace · Startup",
       description: "A B2C/C2C marketplace for clothing rentals and sales. Both businesses and individual users list items, discover matches through filters and search, and book directly. Includes payment flow, user ratings, and automated notifications.",
-      status: "Technically live.",
+      status: "Live, actively under development.",
       highlight: "Awarded a 2000 AZN grant from SUPVC and successfully selected for an official startup incubation program.",
       linkLabel: "Visit website",
       linkUrl: "https://payla.az",
@@ -227,7 +227,7 @@ export const translations: Record<Language, Translations> = {
       name: "Unim.az",
       label: "Student Ecosystem · SaaS",
       description: "A student portal combining academic resources, campus news, and social features. Covers daily needs like class schedules, announcements, and peer-to-peer communication.",
-      status: "Live with an active user base.",
+      status: "Live with real users.",
       highlight: "A single platform that simplifies daily campus life for students.",
       linkLabel: "Visit website",
       linkUrl: "https://unim.az",
