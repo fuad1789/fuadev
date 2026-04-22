@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
+import Demos from "@/components/Demos";
 import Skills from "@/components/Skills";
 import Experimental from "@/components/Experimental";
 import Contact from "@/components/Contact";
@@ -30,6 +31,11 @@ export default function Home() {
             {/* Projects section */}
             <section className="py-8 lg:py-12">
               <Projects />
+            </section>
+
+            {/* Demos section — concept / showcase work */}
+            <section className="py-8 lg:py-12">
+              <Demos />
             </section>
 
             {/* Other sections */}

@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
+import { Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollProgress from "@/components/ScrollProgress";
+
+const manrope = Manrope({
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Fuad Bağıyev · Full-stack Developer",
@@ -35,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="az">
+    <html lang="az" className={`${manrope.variable} ${jetbrainsMono.variable}`}>
       <body>
         <ScrollProgress />
         {children}

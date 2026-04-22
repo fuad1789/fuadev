@@ -16,12 +16,27 @@ export interface Translations {
   projects: {
     title: string;
     subtitle: string;
+    seeAll: string;
     items: Array<{
       name: string;
       label: string;
       description: string;
       status: string;
       highlight: string;
+      linkLabel: string;
+      linkUrl: string;
+      image?: string;
+    }>;
+  };
+  demos: {
+    title: string;
+    subtitle: string;
+    badge: string;
+    items: Array<{
+      name: string;
+      label: string;
+      description: string;
+      stack: string;
       linkLabel: string;
       linkUrl: string;
       image?: string;
@@ -72,6 +87,7 @@ export const translations: Record<Language, Translations> = {
    projects: {
   title: "Layihələr",
   subtitle: "Real biznes mühitində və rəsmi qurumlarda istifadə olunan əsas işlərim.",
+  seeAll: "Hamısını gör",
   items: [
     {
       name: "Azeri Edu",
@@ -135,6 +151,94 @@ export const translations: Record<Language, Translations> = {
     },
   ],
 },
+   demos: {
+  title: "Demolar",
+  subtitle: "Konsept və showcase işləri — real istifadədə deyil, sadəcə dizayn və texnologiya təcrübələri.",
+  badge: "Demo",
+  items: [
+    {
+      name: "Oksigen Klinik",
+      label: "Healthcare · Klinik Xəstəxana Saytı",
+      description: "Bakıda fəaliyyət göstərən klinik xəstəxana üçün konsept veb sayt. Onlayn randevu sistemi, bölmələr (Cərrahiyyə, Kardiologiya, Diaqnostika, Pediatriya, Oftalmologiya), həkim profilləri və 24/7 əlaqə daxildir. Üç dilli interfeys (AZ / RU / EN).",
+      stack: "Next.js · i18n routing · Tailwind CSS",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://oksigen-seven.vercel.app/",
+      image: "/oksigen.png",
+    },
+    {
+      name: "Megadent",
+      label: "Healthcare · Estetik Stomatoloji Klinika",
+      description: "PhD. Sahib Bilalzadənin rəhbərliyi altında fəaliyyət göstərən Megadent estetik stomatoloji klinikası üçün lüks səhifə dizaynı. Xidmətlər (implant, ortodontiya, endodontiya, ağardma), həkim təqdimatı, filiallar, rəylər və WhatsApp inteqrasiyası daxildir.",
+      stack: "Next.js · Tailwind CSS · Dark & Gold UI",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://megadent.vercel.app/",
+      image: "/megadent.png",
+    },
+    {
+      name: "Nabran Əmlak",
+      label: "Real Estate · Kurort Əmlak Platforması",
+      description: "Nabranda gündəlik kirayə villalar, satılıq torpaq sahələri və tikinti / təmir xidmətlərini bir ünvanda toplayan əmlak platforması. Lokasiya, obyekt tipi və tarix üzrə axtarış, kirayə / satış / tikinti kateqoriyaları və obyekt kataloqu daxildir.",
+      stack: "Next.js · Tailwind CSS · Search & Booking UX",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://nabran-emlak.vercel.app/",
+      image: "/nabran.jpg",
+    },
+    {
+      name: "Villa Baku",
+      label: "Construction · Tikinti, Təmir və İnteryer Studio",
+      description: "Bakı və ətrafında mənzil, villa və kommersiya obyektlərinin təmiri və interyer dizaynı üzrə ixtisaslaşmış studio üçün konsept landing page. Açar təhvil layihələr, xidmətlər kataloqu, iş portfolyosu və 14 illik təcrübə vurğusu daxildir.",
+      stack: "Next.js · Tailwind CSS · Editorial Architecture UI",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://villabaku-az.vercel.app/",
+      image: "/villabaku.png",
+    },
+    {
+      name: "Zaman Kursları",
+      label: "Education · Tədris Mərkəzi",
+      description: "18 illik təcrübəyə malik tədris mərkəzi üçün konsept landing page. Magistratura, Xaricdə Təhsil və Abituriyent hazırlığı proqramları, sınaq dərsi qeydiyyatı, qəbul nəticələri (98%) və WhatsApp inteqrasiyası daxildir.",
+      stack: "Next.js · Tailwind CSS · Lead Capture UX",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://zaman-kurslari.vercel.app/",
+      image: "/zaman.png",
+    },
+    {
+      name: "BFC Academy",
+      label: "Education · Dil və Hazırlıq Mərkəzi",
+      description: "Bright Future Center — Bakının ən böyük tədris şəbəkələrindən biri üçün konsept platforma. İngilis dili, IELTS, TOEFL və Abituriyent hazırlığı kursları, kurs axtarışı, müəllim profilləri, sınaq dərsi qeydiyyat formu və Cambridge / IELTS / Pearson / ETS Global rəsmi tərəfdaşlıqları.",
+      stack: "Next.js · Tailwind CSS · Course Catalog UX",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://bfc-kurslari.vercel.app/",
+      image: "/bfc.png",
+    },
+    {
+      name: "Qafqaz Hazırlıq",
+      label: "Education · Abituriyent Hazırlıq Kursları",
+      description: "2011-ci ildən fəaliyyətdə olan Qafqaz Hazırlıq Kursları üçün konsept landing page. Abituriyent hazırlıq proqramları, kurs siyahısı, qəbul nəticələri (98%), 15 illik təcrübə vurğusu, qeydiyyat axını və WhatsApp inteqrasiyası daxildir.",
+      stack: "Next.js · Tailwind CSS · Conversion-Focused UX",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://qafqaz-tedris-merkezi.vercel.app/",
+      image: "/qafqaz.png",
+    },
+    {
+      name: "Oxu Tədris Mərkəzi",
+      label: "Education · 1–9 Sinif Tədris Mərkəzi",
+      description: "1–9 cu siniflər üçün tədris mərkəzi konsepti. Uşaqların inkişafı, təhlükəsiz mühit və validəynlərlə aylıq hesabat funksiyaları, abituriyent / fənn hazırlığı / İngilis dili dərsləri kataloqu, 1000+ məzun statistikası və WhatsApp inteqrasiyası daxildir.",
+      stack: "Next.js · Tailwind CSS · Parent-Facing UX",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://oxutedris-az.vercel.app/",
+      image: "/oxutedris.png",
+    },
+    {
+      name: "Boomberry",
+      label: "E-commerce · Premium Şokolad Brendi",
+      description: "Lüks qənnadı və hədiyyəlik şokolad brendi üçün hazırlanmış konsept e-commerce platforma. Çiyələk buketləri, Dubay şokoladı, korporativ hədiyyələr kateqoriyaları, məhsul filtri, səbət və ödəniş axını daxildir.",
+      stack: "Next.js · Tailwind CSS · E-commerce UX",
+      linkLabel: "Demoya bax",
+      linkUrl: "https://boomberry.vercel.app",
+      image: "/boomberry.png",
+    },
+  ],
+},
     skills: {
       title: "Bacarıqlar və Texnologiyalar",
       services: [
@@ -192,6 +296,7 @@ export const translations: Record<Language, Translations> = {
    projects: {
   title: "Projects",
   subtitle: "High-impact products developed for real business and official environments.",
+  seeAll: "See all",
   items: [
     {
       name: "Azeri Edu",
@@ -252,6 +357,94 @@ export const translations: Record<Language, Translations> = {
       linkLabel: "Visit website",
       linkUrl: "https://sustainability.sdu.edu.az",
       image: "/dayaniqli-inkisaf.png",
+    },
+  ],
+},
+   demos: {
+  title: "Demos",
+  subtitle: "Concept and showcase work — not in production, just design and technology experiments.",
+  badge: "Demo",
+  items: [
+    {
+      name: "Oksigen Clinic",
+      label: "Healthcare · Clinic Hospital Website",
+      description: "A concept website for a clinic hospital based in Baku. Features online appointment booking, departments (Surgery, Cardiology, Diagnostics, Pediatrics, Ophthalmology), doctor profiles and 24/7 contact. Trilingual interface (AZ / RU / EN).",
+      stack: "Next.js · i18n routing · Tailwind CSS",
+      linkLabel: "View demo",
+      linkUrl: "https://oksigen-seven.vercel.app/",
+      image: "/oksigen.png",
+    },
+    {
+      name: "Megadent",
+      label: "Healthcare · Aesthetic Dental Clinic",
+      description: "A luxury landing page designed for Megadent aesthetic dental clinic, led by PhD. Sahib Bilalzade. Covers services (implants, orthodontics, endodontics, whitening), doctor profile, branches, reviews and WhatsApp integration.",
+      stack: "Next.js · Tailwind CSS · Dark & Gold UI",
+      linkLabel: "View demo",
+      linkUrl: "https://megadent.vercel.app/",
+      image: "/megadent.png",
+    },
+    {
+      name: "Nabran Real Estate",
+      label: "Real Estate · Resort Property Platform",
+      description: "A real estate platform that brings together daily villa rentals, land for sale, and construction / renovation services in Nabran — all in one place. Includes search by location, property type and date, plus rental / sale / construction categories and a property catalogue.",
+      stack: "Next.js · Tailwind CSS · Search & Booking UX",
+      linkLabel: "View demo",
+      linkUrl: "https://nabran-emlak.vercel.app/",
+      image: "/nabran.jpg",
+    },
+    {
+      name: "Villa Baku",
+      label: "Construction · Build, Renovation & Interior Studio",
+      description: "A concept landing page for a Baku-based studio specialising in renovation and interior design for apartments, villas and commercial spaces. Covers turnkey projects, services catalogue, work portfolio and 14 years of experience.",
+      stack: "Next.js · Tailwind CSS · Editorial Architecture UI",
+      linkLabel: "View demo",
+      linkUrl: "https://villabaku-az.vercel.app/",
+      image: "/villabaku.png",
+    },
+    {
+      name: "Zaman Courses",
+      label: "Education · Tutoring Center",
+      description: "A concept landing page for an education center with 18 years of experience. Covers Master's, Study Abroad and university entrance prep programs, trial lesson sign-up, admission stats (98%) and WhatsApp integration.",
+      stack: "Next.js · Tailwind CSS · Lead Capture UX",
+      linkLabel: "View demo",
+      linkUrl: "https://zaman-kurslari.vercel.app/",
+      image: "/zaman.png",
+    },
+    {
+      name: "BFC Academy",
+      label: "Education · Language & Prep Center",
+      description: "Bright Future Center — a concept platform for one of Baku's largest tutoring networks. Covers English, IELTS, TOEFL and university entrance prep courses, course search, instructor profiles, trial lesson sign-up form and official Cambridge / IELTS / Pearson / ETS Global partnerships.",
+      stack: "Next.js · Tailwind CSS · Course Catalog UX",
+      linkLabel: "View demo",
+      linkUrl: "https://bfc-kurslari.vercel.app/",
+      image: "/bfc.png",
+    },
+    {
+      name: "Qafqaz Prep",
+      label: "Education · University Entrance Prep",
+      description: "A concept landing page for Qafqaz Hazırlıq Kursları, operating since 2011. Covers entrance exam prep programs, course list, admission stats (98%), 15+ years of experience, sign-up flow and WhatsApp integration.",
+      stack: "Next.js · Tailwind CSS · Conversion-Focused UX",
+      linkLabel: "View demo",
+      linkUrl: "https://qafqaz-tedris-merkezi.vercel.app/",
+      image: "/qafqaz.png",
+    },
+    {
+      name: "Oxu Education Center",
+      label: "Education · K-9 School Tutoring Center",
+      description: "A concept site for a tutoring center serving grades 1–9. Covers child development, safe learning environment and monthly parent reports, plus a catalogue of entrance, subject and English language courses, 1000+ alumni stats and WhatsApp integration.",
+      stack: "Next.js · Tailwind CSS · Parent-Facing UX",
+      linkLabel: "View demo",
+      linkUrl: "https://oxutedris-az.vercel.app/",
+      image: "/oxutedris.png",
+    },
+    {
+      name: "Boomberry",
+      label: "E-commerce · Premium Chocolate Brand",
+      description: "A concept e-commerce platform built for a premium chocolate and gifting brand. Includes strawberry bouquet, Dubai chocolate and corporate gift categories, product filters, cart and checkout flow.",
+      stack: "Next.js · Tailwind CSS · E-commerce UX",
+      linkLabel: "View demo",
+      linkUrl: "https://boomberry.vercel.app",
+      image: "/boomberry.png",
     },
   ],
 },
