@@ -79,7 +79,7 @@ export default function Demos() {
                         {demo.label}
                       </p>
                     </div>
-                    <span className="shrink-0 text-[9px] tracking-[0.3em] uppercase text-white/70 border border-white/15 rounded-full px-2.5 py-1 font-mono">
+                    <span className="hidden sm:inline-flex shrink-0 text-[9px] tracking-[0.3em] uppercase text-white/70 border border-white/15 rounded-full px-2.5 py-1 font-mono">
                       {tag}
                     </span>
                   </div>
