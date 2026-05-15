@@ -26,6 +26,12 @@ export interface Translations {
       linkLabel: string;
       linkUrl: string;
       image?: string;
+      award?: {
+        ring: string; // text repeated around the medallion ring
+        line1: string; // small caps line at top of inner inscription
+        line2: string; // bold inscription (amount or honor)
+        line3?: string; // optional small line below
+      };
     }>;
   };
   demos: {
@@ -108,6 +114,12 @@ export const translations: Record<Language, Translations> = {
       linkLabel: "Sayta keçid",
       linkUrl: "https://payla.az",
       image: "/paylaaz.png",
+      award: {
+        ring: "★ SUPVC VENTURE GRANT · LAUREATE · 2024 · ",
+        line1: "MÜKAFAT",
+        line2: "2.000 ₼",
+        line3: "İNKUBASİYA",
+      },
     },
     {
       name: "karyera.sdu.edu.az",
@@ -234,7 +246,7 @@ export const translations: Record<Language, Translations> = {
       description: "Lüks qənnadı və hədiyyəlik şokolad brendi üçün hazırlanmış konsept e-commerce platforma. Çiyələk buketləri, Dubay şokoladı, korporativ hədiyyələr kateqoriyaları, məhsul filtri, səbət və ödəniş axını daxildir.",
       stack: "Next.js · Tailwind CSS · E-commerce UX",
       linkLabel: "Demoya bax",
-      linkUrl: "https://boomberry.vercel.app",
+      linkUrl: "https://boomberry-az.vercel.app/",
       image: "/boomberry.png",
     },
   ],
@@ -317,6 +329,12 @@ export const translations: Record<Language, Translations> = {
       linkLabel: "Visit website",
       linkUrl: "https://payla.az",
       image: "/paylaaz.png",
+      award: {
+        ring: "★ SUPVC VENTURE GRANT · LAUREATE · 2024 · ",
+        line1: "AWARDED",
+        line2: "2.000 ₼",
+        line3: "INCUBATED",
+      },
     },
     {
       name: "karyera.sdu.edu.az",
@@ -443,7 +461,7 @@ export const translations: Record<Language, Translations> = {
       description: "A concept e-commerce platform built for a premium chocolate and gifting brand. Includes strawberry bouquet, Dubai chocolate and corporate gift categories, product filters, cart and checkout flow.",
       stack: "Next.js · Tailwind CSS · E-commerce UX",
       linkLabel: "View demo",
-      linkUrl: "https://boomberry.vercel.app",
+      linkUrl: "https://boomberry-az.vercel.app/",
       image: "/boomberry.png",
     },
   ],
