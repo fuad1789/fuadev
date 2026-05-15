@@ -17,6 +17,10 @@ export interface Translations {
     title: string;
     subtitle: string;
     seeAll: string;
+    specs: {
+      kind: string;
+      status: string;
+    };
     items: Array<{
       name: string;
       label: string;
@@ -94,6 +98,10 @@ export const translations: Record<Language, Translations> = {
   title: "Layihələr",
   subtitle: "Real biznes mühitində və rəsmi qurumlarda istifadə olunan əsas işlərim.",
   seeAll: "Hamısını gör",
+  specs: {
+    kind: "Növ",
+    status: "Status",
+  },
   items: [
     {
       name: "Azeri Edu",
@@ -160,6 +168,26 @@ export const translations: Record<Language, Translations> = {
       linkLabel: "Sayta keçid",
       linkUrl: "https://sustainability.sdu.edu.az",
       image: "/dayaniqli-inkisaf.png",
+    },
+    {
+      name: "Idea İnşaat",
+      label: "Construction · Korporativ Sayt",
+      description: "Tikinti və inşaat şirkəti üçün korporativ veb sayt. Layihələr kataloqu, xidmətlər, şirkət haqqında və əlaqə bölmələri ilə professional rəqəmsal təqdimat, motion və scroll-əsaslı keçidlərlə zəngin bir istifadəçi təcrübəsi.",
+      status: "Aktivdir, korporativ istifadədədir.",
+      highlight: "Tam responsiv, performans və SEO üçün optimallaşdırılmış, animation-driven istifadəçi axını.",
+      linkLabel: "Sayta keçid",
+      linkUrl: "https://www.ideainshaat.az/az",
+      image: "/ideainshaat.png",
+    },
+    {
+      name: "Aspendos Academy",
+      label: "Healthcare · Beynəlxalq Tibbi Akademiya",
+      description: "Həkim və tibb tələbələri üçün beynəlxalq tibbi staj, observership və klinik fellowship proqramlarını təqdim edən akademiya saytı. Türkiyənin akkreditasiyalı xəstəxanalarında fərdi akademik müşayiət, proqram axtarışı, müraciət axını və komanda bölmələri daxildir.",
+      status: "Aktivdir, real istifadədədir.",
+      highlight: "20+ ölkədən 180+ həkimə xidmət edən, çoxdilli akademik fellowship platforması — qeydiyyat və müraciət axını ilə tam funksional.",
+      linkLabel: "Sayta keçid",
+      linkUrl: "https://www.aspendosacademy.az/",
+      image: "/aspendos.png",
     },
   ],
 },
@@ -309,6 +337,10 @@ export const translations: Record<Language, Translations> = {
   title: "Projects",
   subtitle: "High-impact products developed for real business and official environments.",
   seeAll: "See all",
+  specs: {
+    kind: "Kind",
+    status: "Status",
+  },
   items: [
     {
       name: "Azeri Edu",
@@ -375,6 +407,26 @@ export const translations: Record<Language, Translations> = {
       linkLabel: "Visit website",
       linkUrl: "https://sustainability.sdu.edu.az",
       image: "/dayaniqli-inkisaf.png",
+    },
+    {
+      name: "Idea İnşaat",
+      label: "Construction · Corporate Website",
+      description: "Corporate website for a construction and development company. Includes a project catalog, services overview, about and contact sections, with motion- and scroll-driven transitions for a rich user experience.",
+      status: "Live, in active corporate use.",
+      highlight: "Fully responsive, performance- and SEO-optimized, with an animation-driven user flow.",
+      linkLabel: "Visit website",
+      linkUrl: "https://www.ideainshaat.az/az",
+      image: "/ideainshaat.png",
+    },
+    {
+      name: "Aspendos Academy",
+      label: "Healthcare · International Medical Academy",
+      description: "Academy website offering international medical observership, clinical fellowship and training programs for doctors and medical students. Features personalized academic mentorship in accredited Turkish hospitals, program search, application flow and team profiles.",
+      status: "Live, in active production use.",
+      highlight: "A multilingual academic fellowship platform serving 180+ doctors from 20+ countries, with a full registration and application flow.",
+      linkLabel: "Visit website",
+      linkUrl: "https://www.aspendosacademy.az/",
+      image: "/aspendos.png",
     },
   ],
 },

@@ -198,8 +198,8 @@ export default function Projects() {
                   {/* Spec sheet */}
                   <div className="mt-7 sm:mt-9 pt-5 border-t border-white/[0.07] grid grid-cols-2 gap-5 sm:gap-8">
                     {[
-                      { label: 'Kind', value: kind },
-                      { label: 'Status', value: status },
+                      { label: t.projects.specs.kind, value: kind },
+                      { label: t.projects.specs.status, value: status },
                     ].map((row) => (
                       <div key={row.label} className="min-w-0">
                         <p className="text-[9px] font-mono tracking-[0.28em] uppercase text-white/30 mb-1.5">
