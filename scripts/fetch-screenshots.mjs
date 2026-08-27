@@ -31,7 +31,7 @@ const TARGETS = [
   { url: "https://www.aspendosacademy.az/", file: "aspendos.png", waitFor: 4000 },
   { url: "https://oksigen-seven.vercel.app/", file: "oksigen.png" },
   { url: "https://megadent.vercel.app/", file: "megadent.png" },
-  { url: "https://nabran-emlak.vercel.app/", file: "nabran.jpg" },
+  { url: "https://nabran-emlak.vercel.app/", file: "nabran.png" },
   { url: "https://villabaku-az.vercel.app/", file: "villabaku.png" },
   { url: "https://zaman-kurslari.vercel.app/", file: "zaman.png" },
   { url: "https://bfc-kurslari.vercel.app/", file: "bfc.png" },

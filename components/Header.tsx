@@ -1,55 +1,71 @@
 'use client';
 
 import { useLanguage } from '@/app/providers';
-import { motion } from 'framer-motion';
+import type { Language } from '@/lib/translations';
+
+const LANGUAGES: Language[] = ['az', 'en'];
 
 export default function Header() {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+
+  const navItems = [
+    { href: '#work', label: t.nav.work },
+    { href: '#concepts', label: t.nav.demos },
+    { href: '#skills', label: t.nav.skills },
+  ];
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/10"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.a
-            href="#"
-            className="text-xl font-semibold text-white hover:text-gray-300 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-md">
+      <div className="container-page">
+        <div className="flex h-header items-center justify-between gap-4">
+          <a href="#top" className="text-[0.9375rem] font-semibold tracking-tight">
             fuadev
-          </motion.a>
-          
+          </a>
+
+          <nav aria-label="Primary" className="hidden md:block">
+            <ul className="flex items-center gap-1">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="rounded-lg px-3 py-2 text-sm text-fg-2 transition-colors hover:bg-muted hover:text-fg"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setLanguage('az')}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
-                language === 'az'
-                  ? 'bg-white/10 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
-              }`}
+            {/* Segmented language control */}
+            <div className="flex items-center rounded-lg border border-line bg-muted p-0.5">
+              {LANGUAGES.map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setLanguage(lang)}
+                  aria-current={language === lang ? 'true' : undefined}
+                  className={`rounded-md px-2.5 py-1 text-xs font-medium uppercase transition-colors ${
+                    language === lang
+                      ? 'bg-bg text-fg shadow-sm'
+                      : 'text-fg-3 hover:text-fg'
+                  }`}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              className="hidden rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:inline-flex"
             >
-              AZ
-            </button>
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
-                language === 'en'
-                  ? 'bg-white/10 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              EN
-            </button>
+              {t.nav.contact}
+            </a>
           </div>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
-
-

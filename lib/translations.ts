@@ -1,286 +1,352 @@
 export type Language = "az" | "en";
 
+/** Drives the status chip styling — set in data, never inferred from prose. */
+export type StatusTone = "live" | "official" | "oss" | "dev";
+
+export interface ProjectItem {
+  name: string;
+  /** Primary classification, e.g. "Marketplace". Rendered as the card eyebrow. */
+  kind: string;
+  /** Secondary qualifier, e.g. "High-Load". Optional. */
+  tag?: string;
+  description: string;
+  /** The single most persuasive sentence. Rendered as a marked note. */
+  highlight: string;
+  status: string;
+  statusTone: StatusTone;
+  /** Only set where the stack is actually known. Omitted otherwise. */
+  stack?: string;
+  linkUrl: string;
+  image: string;
+  award?: {
+    label: string;
+    value: string;
+    note: string;
+  };
+}
+
+export interface DemoItem {
+  name: string;
+  kind: string;
+  description: string;
+  stack: string;
+  linkUrl: string;
+  image: string;
+}
+
 export interface Translations {
-  hero: {
+  nav: {
+    work: string;
+    demos: string;
+    skills: string;
+    contact: string;
+    skip: string;
+  };
+  /** Opening section — introduction and background in one block. */
+  intro: {
     name: string;
-    subtitle: string;
-    intro: string;
+    role: string;
+    /** The large opening line — says what he does, not who he is. */
+    statement: string;
+    lede: string;
+    body: string;
     primaryButton: string;
     secondaryButton: string;
-  };
-  about: {
-    title: string;
-    body: string;
-    extraLine: string;
+    availability: string;
+    stats: Array<{ value: string; label: string }>;
   };
   projects: {
+    eyebrow: string;
     title: string;
     subtitle: string;
     seeAll: string;
     specs: {
       kind: string;
       status: string;
+      stack: string;
     };
-    items: Array<{
-      name: string;
-      label: string;
-      description: string;
-      status: string;
-      highlight: string;
-      linkLabel: string;
-      linkUrl: string;
-      image?: string;
-      award?: {
-        ring: string; // text repeated around the medallion ring
-        line1: string; // small caps line at top of inner inscription
-        line2: string; // bold inscription (amount or honor)
-        line3?: string; // optional small line below
-      };
-    }>;
+    items: ProjectItem[];
   };
   demos: {
+    eyebrow: string;
     title: string;
     subtitle: string;
-    badge: string;
-    items: Array<{
-      name: string;
-      label: string;
-      description: string;
-      stack: string;
-      linkLabel: string;
-      linkUrl: string;
-      image?: string;
-    }>;
+    items: DemoItem[];
   };
   skills: {
+    eyebrow: string;
     title: string;
+    servicesTitle: string;
+    technologiesTitle: string;
     services: string[];
     technologies: Array<{ name: string; icon: string }>;
   };
-  experimental: {
-    title: string;
-    body: string;
-  };
   contact: {
+    eyebrow: string;
     title: string;
     text: string;
     emailLabel: string;
     email: string;
     githubLabel: string;
+    githubHandle: string;
     githubUrl: string;
     whatsappLabel: string;
     whatsappNumber: string;
     linkedinLabel: string;
+    linkedinHandle: string;
     linkedinUrl: string;
   };
   footer: {
-    text: string;
+    tagline: string;
+    backToTop: string;
+    builtWith: string;
   };
 }
 
 export const translations: Record<Language, Translations> = {
   az: {
-    hero: {
+    nav: {
+      work: "İşlər",
+      demos: "Konseptlər",
+      skills: "Bacarıqlar",
+      contact: "Əlaqə",
+      skip: "Məzmuna keç",
+    },
+    intro: {
       name: "Fuad Bağıyev",
-      subtitle: "Full-stack developer · AI əsaslı məhsul qurucusu",
-      intro:
-        "4 ildən çoxdur web və mobil layihələr qururam. Payla.az və Unim.az kimi məhsulların müəllifiyəm. Hazırda AI dəstəyi ilə fərqli, real istifadə olunan layihələr hazırlayıram.",
-      primaryButton: "Layihələrə bax",
-      secondaryButton: "Mən kiməm?",
+      role: "Full-stack developer",
+      statement: "Real istifadəçisi olan məhsullar qururam.",
+      lede: "Kurs mərkəzləri üçün high-load LMS, geyim marketplace-i və universitetin rəsmi portalları — 4 ildən çoxdur production mühitində.",
+      body: "Sumqayıt Dövlət Universitetinin tələbəsiyəm. Şablonla deyil, problemlə başlayıram — minimal dizaynlı, AI ilə gücləndirilmiş və real istifadəçisi olan məhsullar qurmağa çalışıram.",
+      primaryButton: "İşlərə bax",
+      secondaryButton: "Əlaqə saxla",
+      availability: "Yeni layihələrə açığam",
+      stats: [
+        { value: "4+", label: "İl təcrübə" },
+        { value: "8", label: "Production layihə" },
+        { value: "2", label: "Rəsmi dövlət portalı" },
+        { value: "5.000 ₼", label: "Qazanılan qrant" },
+      ],
     },
-    about: {
-      title: "Mən kiməm?",
-      body: 'Sumqayıt Dövlət Universitetinin tələbəsiyəm və 4+ illik təcrübə ilə web və mobil layihələr hazırlayıram. Daha çox real problem həll edən, minimal dizaynlı və AI ilə gücləndirilmiş məhsullar üzərində işləyirəm. "Vibe coding" yanaşması ilə, klassik şablonlardan uzaq, öz üslubumu qurmağa çalışıram.',
-      extraLine:
-        "Gündəlik JavaScript, React / Next.js, Node.js, Tailwind CSS, MongoDB və müasir məhsul alətləri ilə işləyirəm.",
-    },
-   projects: {
-  title: "Layihələr",
-  subtitle: "Real biznes mühitində və rəsmi qurumlarda istifadə olunan əsas işlərim.",
-  seeAll: "Hamısını gör",
-  specs: {
-    kind: "Növ",
-    status: "Status",
-  },
-  items: [
-    {
-      name: "Azeri Edu",
-      label: "Tədris İdarəetmə Sistemi (LMS) · High-Load",
-      description: "Kurs mərkəzi üçün hazırlanmış tədris platforması. İmtahan cavablarının avtomatik yoxlanması, kurs yerləşdirmə, imtahan qeydiyyatı, Google OAuth ilə giriş və admin paneli üzərindən real vaxtlı analitika daxildir.",
-      status: "Hal-hazırda aktiv istifadədədir.",
-      highlight: "Next.js, MongoDB, Nginx və PM2 Cluster üzərində qurulmuş tam server arxitekturası ilə stabil production mühiti.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://azeri.edu.az", // Linki dəqiq domeninlə əvəz edərsən
-      image: "/azeri-edu.png", // Şəklin adını özünə uyğun yazarsan
-    },
-    {
-      name: "Payla.az",
-      label: "B2C / C2C Marketplace · Startup",
-      description: "Geyim kirayəsi və satışı üçün B2C/C2C marketplace. Həm biznes, həm də fərdi istifadəçilər elan yerləşdirir, filtr və axtarış ilə uyğun geyim tapır, rezervasiya edir. Ödəniş axını, istifadəçi reytinqi və avtomatik bildirişlər daxildir.",
-      status: "Platforma aktivdir, inkişaf davam edir.",
-      highlight: "Bu innovativ ideyaya görə SUPVC tərəfindən 2000 AZN mükafat qazanaraq rəsmi inkubasiya proqramına qəbul edilmişəm.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://payla.az",
-      image: "/paylaaz.png",
-      award: {
-        ring: "★ SUPVC VENTURE GRANT · LAUREATE · 2024 · ",
-        line1: "MÜKAFAT",
-        line2: "2.000 ₼",
-        line3: "İNKUBASİYA",
+    projects: {
+      eyebrow: "Seçilmiş işlər",
+      title: "Layihələr",
+      subtitle:
+        "Real biznes mühitində və rəsmi qurumlarda istifadə olunan əsas işlərim.",
+      seeAll: "GitHub",
+      specs: {
+        kind: "Növ",
+        status: "Status",
+        stack: "Stack",
       },
+      items: [
+        {
+          name: "Azeri Edu",
+          kind: "Tədris İdarəetmə Sistemi",
+          tag: "High-Load",
+          description:
+            "Kurs mərkəzi üçün hazırlanmış tədris platforması. İmtahan cavablarının avtomatik yoxlanması, kurs yerləşdirmə, imtahan qeydiyyatı, Google OAuth ilə giriş və admin paneli üzərindən real vaxtlı analitika daxildir.",
+          highlight:
+            "Next.js, MongoDB, Nginx və PM2 Cluster üzərində qurulmuş tam server arxitekturası ilə stabil production mühiti.",
+          status: "Aktiv",
+          statusTone: "live",
+          stack: "Next.js · MongoDB · Nginx · PM2",
+          linkUrl: "https://azeri.edu.az",
+          image: "/azeri-edu.png",
+        },
+        {
+          name: "Payla.az",
+          kind: "B2C / C2C Marketplace",
+          tag: "Startup",
+          description:
+            "Geyim kirayəsi və satışı üçün B2C/C2C marketplace. Həm biznes, həm də fərdi istifadəçilər elan yerləşdirir, filtr və axtarış ilə uyğun geyim tapır, rezervasiya edir. Ödəniş axını, istifadəçi reytinqi və avtomatik bildirişlər daxildir.",
+          highlight:
+            "Bu innovativ ideyaya görə SUPVC tərəfindən 2000 AZN mükafat qazanaraq rəsmi inkubasiya proqramına qəbul edilmişəm.",
+          status: "İnkişafda",
+          statusTone: "dev",
+          linkUrl: "https://payla.az",
+          image: "/paylaaz.png",
+          award: {
+            label: "SUPVC Venture Grant",
+            value: "2.000 ₼",
+            note: "İnkubasiya · 2024",
+          },
+        },
+        {
+          name: "karyera.sdu.edu.az",
+          kind: "Rəsmi Karyera Portalı",
+          tag: "SDU",
+          description:
+            "SDU-nun rəsmi karyera portalı. Vakansiya, təcrübə proqramı və təqaüd elanlarını tələbə və məzunlara çatdırır. Universitetin kadr şöbəsi tərəfindən birbaşa idarə olunur.",
+          highlight:
+            "Dövlət qurumu standartlarına uyğun, SEO optimallaşdırılmış və tam responsiv veb həll.",
+          status: "Rəsmi",
+          statusTone: "official",
+          linkUrl: "https://karyera.sdu.edu.az",
+          image: "/sdukaryera.png",
+        },
+        {
+          name: "SDU Dayanıqlı İnkişaf",
+          kind: "Dayanıqlı İnkişaf Portalı",
+          tag: "SDU",
+          description:
+            "SDU-nun BMT-nin 17 Dayanıqlı İnkişaf Məqsədinə (SDG) töhfələrini əks etdirən interaktiv portal. Karbon kalkulyatoru, enerji və su istifadəsi üzrə təsir dashboard-u, tədbirlər təqvimi və SDG tədqiqat hesabatları daxildir.",
+          highlight:
+            "Recharts ilə real vaxtlı data vizualizasiyası, interaktiv karbon ayaq izi kalkulyatoru və 17 SDG məqsədinin ətraflı təqdimatı ilə tam iki dilli (AZ/EN) portal.",
+          status: "Rəsmi",
+          statusTone: "official",
+          stack: "Next.js · Recharts · i18n",
+          linkUrl: "https://sustainability.sdu.edu.az",
+          image: "/dayaniqli-inkisaf.png",
+        },
+        {
+          name: "Unim.az",
+          kind: "Tələbə Ekosistemi",
+          tag: "SaaS",
+          description:
+            "Tələbələr üçün akademik resurslar, kampus xəbərləri və sosial funksiyaları bir arada təqdim edən portal. Dərs cədvəli, elanlar və tələbələrarası ünsiyyət kimi gündəlik ehtiyacları əhatə edir.",
+          highlight:
+            "Tələbənin gündəlik kampus həyatını tək platformada sadələşdirən mərkəzi portal.",
+          status: "Aktiv",
+          statusTone: "live",
+          linkUrl: "https://unim.az",
+          image: "/unimaz.png",
+        },
+        {
+          name: "Loyaltybar",
+          kind: "Bərbərxana İdarəetmə Sistemi",
+          tag: "SaaS",
+          description:
+            "Bərbərxana və salonlar üçün idarəetmə sistemi. QR ilə müştəri tanıma, rəqəmsal növbə, loyallıq proqramı və gəlir/müştəri statistikası funksiyalarını təqdim edir.",
+          highlight:
+            "Admin panel, Biznes paneli, Mobil tətbiq və Server daxil olmaqla 4 fərqli texnoloji komponentdən ibarət kompleks arxitektura.",
+          status: "Açıq mənbə",
+          statusTone: "oss",
+          linkUrl: "https://github.com/fuad1789/Loyaltybar",
+          image: "/loyaltybar.png",
+        },
+        {
+          name: "Aspendos Academy",
+          kind: "Beynəlxalq Tibbi Akademiya",
+          tag: "Healthcare",
+          description:
+            "Həkim və tibb tələbələri üçün beynəlxalq tibbi staj, observership və klinik fellowship proqramlarını təqdim edən akademiya saytı. Türkiyənin akkreditasiyalı xəstəxanalarında fərdi akademik müşayiət, proqram axtarışı, müraciət axını və komanda bölmələri daxildir.",
+          highlight:
+            "20+ ölkədən 180+ həkimə xidmət edən, çoxdilli akademik fellowship platforması — qeydiyyat və müraciət axını ilə tam funksional.",
+          status: "Aktiv",
+          statusTone: "live",
+          linkUrl: "https://www.aspendosacademy.az/",
+          image: "/aspendos.png",
+        },
+        {
+          name: "Idea İnşaat",
+          kind: "Korporativ Sayt",
+          tag: "Construction",
+          description:
+            "Tikinti və inşaat şirkəti üçün korporativ veb sayt. Layihələr kataloqu, xidmətlər, şirkət haqqında və əlaqə bölmələri ilə professional rəqəmsal təqdimat, motion və scroll-əsaslı keçidlərlə zəngin bir istifadəçi təcrübəsi.",
+          highlight:
+            "Tam responsiv, performans və SEO üçün optimallaşdırılmış, animation-driven istifadəçi axını.",
+          status: "Aktiv",
+          statusTone: "live",
+          linkUrl: "https://www.ideainshaat.az/az",
+          image: "/ideainshaat.png",
+        },
+      ],
     },
-    {
-      name: "karyera.sdu.edu.az",
-      label: "Rəsmi Karyera Portalı · SDU",
-      description: "SDU-nun rəsmi karyera portalı. Vakansiya, təcrübə proqramı və təqaüd elanlarını tələbə və məzunlara çatdırır. Universitetin kadr şöbəsi tərəfindən birbaşa idarə olunur.",
-      status: "Universitet tərəfindən rəsmi istifadədədir.",
-      highlight: "Dövlət qurumu standartlarına uyğun, SEO optimallaşdırılmış və tam responsiv veb həll.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://karyera.sdu.edu.az",
-      image: "/sdukaryera.png",
+    demos: {
+      eyebrow: "Konsept işlər",
+      title: "Konseptlər",
+      subtitle:
+        "Müştəri brifi olmadan, öz təşəbbüsümlə qurduğum konsept saytlar — dizayn və texnologiya təcrübələri.",
+      items: [
+        {
+          name: "Oksigen Klinik",
+          kind: "Healthcare",
+          description:
+            "Klinik xəstəxana üçün konsept sayt. Onlayn randevu, bölmələr, həkim profilləri və üçdilli interfeys (AZ / RU / EN).",
+          stack: "Next.js · i18n routing · Tailwind CSS",
+          linkUrl: "https://oksigen-seven.vercel.app/",
+          image: "/oksigen.png",
+        },
+        {
+          name: "Megadent",
+          kind: "Healthcare",
+          description:
+            "Estetik stomatoloji klinika üçün lüks səhifə dizaynı. Xidmətlər, həkim təqdimatı, filiallar və WhatsApp inteqrasiyası.",
+          stack: "Next.js · Tailwind CSS · Dark & Gold UI",
+          linkUrl: "https://megadent.vercel.app/",
+          image: "/megadent.png",
+        },
+        {
+          name: "Nabran Əmlak",
+          kind: "Real Estate",
+          description:
+            "Kirayə villalar, satılıq torpaq sahələri və tikinti xidmətlərini bir ünvanda toplayan əmlak platforması konsepti.",
+          stack: "Next.js · Tailwind CSS · Search & Booking UX",
+          linkUrl: "https://nabran-emlak.vercel.app/",
+          image: "/nabran.png",
+        },
+        {
+          name: "Villa Baku",
+          kind: "Construction",
+          description:
+            "Təmir və interyer dizaynı studiyası üçün konsept landing page. Açar təhvil layihələr və iş portfolyosu.",
+          stack: "Next.js · Tailwind CSS · Editorial UI",
+          linkUrl: "https://villabaku-az.vercel.app/",
+          image: "/villabaku.png",
+        },
+        {
+          name: "Boomberry",
+          kind: "E-commerce",
+          description:
+            "Premium şokolad brendi üçün konsept e-commerce. Məhsul filtri, səbət və ödəniş axını daxildir.",
+          stack: "Next.js · Tailwind CSS · E-commerce UX",
+          linkUrl: "https://boomberry-az.vercel.app/",
+          image: "/boomberry.png",
+        },
+        {
+          name: "BFC Academy",
+          kind: "Education",
+          description:
+            "Dil və hazırlıq mərkəzi üçün konsept platforma. Kurs axtarışı, müəllim profilləri və sınaq dərsi qeydiyyatı.",
+          stack: "Next.js · Tailwind CSS · Course Catalog UX",
+          linkUrl: "https://bfc-kurslari.vercel.app/",
+          image: "/bfc.png",
+        },
+        {
+          name: "Zaman Kursları",
+          kind: "Education",
+          description:
+            "Tədris mərkəzi üçün konsept landing page. Proqramlar, sınaq dərsi qeydiyyatı və WhatsApp inteqrasiyası.",
+          stack: "Next.js · Tailwind CSS · Lead Capture UX",
+          linkUrl: "https://zaman-kurslari.vercel.app/",
+          image: "/zaman.png",
+        },
+        {
+          name: "Qafqaz Hazırlıq",
+          kind: "Education",
+          description:
+            "Abituriyent hazırlıq kursları üçün konsept landing page. Kurs siyahısı, qəbul nəticələri və qeydiyyat axını.",
+          stack: "Next.js · Tailwind CSS · Conversion UX",
+          linkUrl: "https://qafqaz-tedris-merkezi.vercel.app/",
+          image: "/qafqaz.png",
+        },
+        {
+          name: "Oxu Tədris Mərkəzi",
+          kind: "Education",
+          description:
+            "1–9 cu siniflər üçün tədris mərkəzi konsepti. Fənn hazırlığı kataloqu və validəyn hesabatı funksiyaları.",
+          stack: "Next.js · Tailwind CSS · Parent-Facing UX",
+          linkUrl: "https://oxutedris-az.vercel.app/",
+          image: "/oxutedris.png",
+        },
+      ],
     },
-    {
-      name: "Unim.az",
-      label: "Tələbə Ekosistemi · SaaS",
-      description: "Tələbələr üçün akademik resurslar, kampus xəbərləri və sosial funksiyaları bir arada təqdim edən portal. Dərs cədvəli, elanlar və tələbələrarası ünsiyyət kimi gündəlik ehtiyacları əhatə edir.",
-      status: "Aktivdir, real istifadəçiləri var.",
-      highlight: "Tələbənin gündəlik kampus həyatını tək platformada sadələşdirən mərkəzi portal.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://unim.az",
-      image: "/unimaz.png",
-    },
-    {
-      name: "Loyaltybar",
-      label: "Bərbərxana İdarəetmə Sistemi (SaaS)",
-      description: "Bərbərxana və salonlar üçün idarəetmə sistemi. QR ilə müştəri tanıma, rəqəmsal növbə, loyallıq proqramı və gəlir/müştəri statistikası funksiyalarını təqdim edir.",
-      status: "Açıq mənbəli layihə.",
-      highlight: "Admin panel, Biznes paneli, Mobil tətbiq və Server daxil olmaqla 4 fərqli texnoloji komponentdən ibarət kompleks arxitektura.",
-      linkLabel: "GitHub-a keçid",
-      linkUrl: "https://github.com/fuad1789/Loyaltybar",
-      image: "/loyaltybar.png",
-    },
-    {
-      name: "SDU Dayanıqlı İnkişaf",
-      label: "Dayanıqlı İnkişaf Portalı · SDU",
-      description: "SDU-nun BMT-nin 17 Dayanıqlı İnkişaf Məqsədinə (SDG) töhfələrini əks etdirən interaktiv portal. Karbon kalkulyatoru, enerji və su istifadəsi üzrə təsir dashboard-u, tədbirlər təqvimi və SDG tədqiqat hesabatları daxildir.",
-      status: "Universitetin rəsmi dayanıqlılıq platforması olaraq fəaliyyətdədir.",
-      highlight: "Recharts ilə real vaxtlı data vizualizasiyası, interaktiv karbon ayaq izi kalkulyatoru və 17 SDG məqsədinin ətraflı təqdimatı ilə tam iki dilli (AZ/EN) portal.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://sustainability.sdu.edu.az",
-      image: "/dayaniqli-inkisaf.png",
-    },
-    {
-      name: "Idea İnşaat",
-      label: "Construction · Korporativ Sayt",
-      description: "Tikinti və inşaat şirkəti üçün korporativ veb sayt. Layihələr kataloqu, xidmətlər, şirkət haqqında və əlaqə bölmələri ilə professional rəqəmsal təqdimat, motion və scroll-əsaslı keçidlərlə zəngin bir istifadəçi təcrübəsi.",
-      status: "Aktivdir, korporativ istifadədədir.",
-      highlight: "Tam responsiv, performans və SEO üçün optimallaşdırılmış, animation-driven istifadəçi axını.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://www.ideainshaat.az/az",
-      image: "/ideainshaat.png",
-    },
-    {
-      name: "Aspendos Academy",
-      label: "Healthcare · Beynəlxalq Tibbi Akademiya",
-      description: "Həkim və tibb tələbələri üçün beynəlxalq tibbi staj, observership və klinik fellowship proqramlarını təqdim edən akademiya saytı. Türkiyənin akkreditasiyalı xəstəxanalarında fərdi akademik müşayiət, proqram axtarışı, müraciət axını və komanda bölmələri daxildir.",
-      status: "Aktivdir, real istifadədədir.",
-      highlight: "20+ ölkədən 180+ həkimə xidmət edən, çoxdilli akademik fellowship platforması — qeydiyyat və müraciət axını ilə tam funksional.",
-      linkLabel: "Sayta keçid",
-      linkUrl: "https://www.aspendosacademy.az/",
-      image: "/aspendos.png",
-    },
-  ],
-},
-   demos: {
-  title: "Demolar",
-  subtitle: "Konsept və showcase işləri — real istifadədə deyil, sadəcə dizayn və texnologiya təcrübələri.",
-  badge: "Demo",
-  items: [
-    {
-      name: "Oksigen Klinik",
-      label: "Healthcare · Klinik Xəstəxana Saytı",
-      description: "Bakıda fəaliyyət göstərən klinik xəstəxana üçün konsept veb sayt. Onlayn randevu sistemi, bölmələr (Cərrahiyyə, Kardiologiya, Diaqnostika, Pediatriya, Oftalmologiya), həkim profilləri və 24/7 əlaqə daxildir. Üç dilli interfeys (AZ / RU / EN).",
-      stack: "Next.js · i18n routing · Tailwind CSS",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://oksigen-seven.vercel.app/",
-      image: "/oksigen.png",
-    },
-    {
-      name: "Megadent",
-      label: "Healthcare · Estetik Stomatoloji Klinika",
-      description: "PhD. Sahib Bilalzadənin rəhbərliyi altında fəaliyyət göstərən Megadent estetik stomatoloji klinikası üçün lüks səhifə dizaynı. Xidmətlər (implant, ortodontiya, endodontiya, ağardma), həkim təqdimatı, filiallar, rəylər və WhatsApp inteqrasiyası daxildir.",
-      stack: "Next.js · Tailwind CSS · Dark & Gold UI",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://megadent.vercel.app/",
-      image: "/megadent.png",
-    },
-    {
-      name: "Nabran Əmlak",
-      label: "Real Estate · Kurort Əmlak Platforması",
-      description: "Nabranda gündəlik kirayə villalar, satılıq torpaq sahələri və tikinti / təmir xidmətlərini bir ünvanda toplayan əmlak platforması. Lokasiya, obyekt tipi və tarix üzrə axtarış, kirayə / satış / tikinti kateqoriyaları və obyekt kataloqu daxildir.",
-      stack: "Next.js · Tailwind CSS · Search & Booking UX",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://nabran-emlak.vercel.app/",
-      image: "/nabran.jpg",
-    },
-    {
-      name: "Villa Baku",
-      label: "Construction · Tikinti, Təmir və İnteryer Studio",
-      description: "Bakı və ətrafında mənzil, villa və kommersiya obyektlərinin təmiri və interyer dizaynı üzrə ixtisaslaşmış studio üçün konsept landing page. Açar təhvil layihələr, xidmətlər kataloqu, iş portfolyosu və 14 illik təcrübə vurğusu daxildir.",
-      stack: "Next.js · Tailwind CSS · Editorial Architecture UI",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://villabaku-az.vercel.app/",
-      image: "/villabaku.png",
-    },
-    {
-      name: "Zaman Kursları",
-      label: "Education · Tədris Mərkəzi",
-      description: "18 illik təcrübəyə malik tədris mərkəzi üçün konsept landing page. Magistratura, Xaricdə Təhsil və Abituriyent hazırlığı proqramları, sınaq dərsi qeydiyyatı, qəbul nəticələri (98%) və WhatsApp inteqrasiyası daxildir.",
-      stack: "Next.js · Tailwind CSS · Lead Capture UX",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://zaman-kurslari.vercel.app/",
-      image: "/zaman.png",
-    },
-    {
-      name: "BFC Academy",
-      label: "Education · Dil və Hazırlıq Mərkəzi",
-      description: "Bright Future Center — Bakının ən böyük tədris şəbəkələrindən biri üçün konsept platforma. İngilis dili, IELTS, TOEFL və Abituriyent hazırlığı kursları, kurs axtarışı, müəllim profilləri, sınaq dərsi qeydiyyat formu və Cambridge / IELTS / Pearson / ETS Global rəsmi tərəfdaşlıqları.",
-      stack: "Next.js · Tailwind CSS · Course Catalog UX",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://bfc-kurslari.vercel.app/",
-      image: "/bfc.png",
-    },
-    {
-      name: "Qafqaz Hazırlıq",
-      label: "Education · Abituriyent Hazırlıq Kursları",
-      description: "2011-ci ildən fəaliyyətdə olan Qafqaz Hazırlıq Kursları üçün konsept landing page. Abituriyent hazırlıq proqramları, kurs siyahısı, qəbul nəticələri (98%), 15 illik təcrübə vurğusu, qeydiyyat axını və WhatsApp inteqrasiyası daxildir.",
-      stack: "Next.js · Tailwind CSS · Conversion-Focused UX",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://qafqaz-tedris-merkezi.vercel.app/",
-      image: "/qafqaz.png",
-    },
-    {
-      name: "Oxu Tədris Mərkəzi",
-      label: "Education · 1–9 Sinif Tədris Mərkəzi",
-      description: "1–9 cu siniflər üçün tədris mərkəzi konsepti. Uşaqların inkişafı, təhlükəsiz mühit və validəynlərlə aylıq hesabat funksiyaları, abituriyent / fənn hazırlığı / İngilis dili dərsləri kataloqu, 1000+ məzun statistikası və WhatsApp inteqrasiyası daxildir.",
-      stack: "Next.js · Tailwind CSS · Parent-Facing UX",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://oxutedris-az.vercel.app/",
-      image: "/oxutedris.png",
-    },
-    {
-      name: "Boomberry",
-      label: "E-commerce · Premium Şokolad Brendi",
-      description: "Lüks qənnadı və hədiyyəlik şokolad brendi üçün hazırlanmış konsept e-commerce platforma. Çiyələk buketləri, Dubay şokoladı, korporativ hədiyyələr kateqoriyaları, məhsul filtri, səbət və ödəniş axını daxildir.",
-      stack: "Next.js · Tailwind CSS · E-commerce UX",
-      linkLabel: "Demoya bax",
-      linkUrl: "https://boomberry-az.vercel.app/",
-      image: "/boomberry.png",
-    },
-  ],
-},
     skills: {
-      title: "Bacarıqlar və Texnologiyalar",
+      eyebrow: "Bacarıqlar",
+      title: "Nə ilə işləyirəm",
+      servicesTitle: "Xidmətlər",
+      technologiesTitle: "Texnologiyalar",
       services: [
         "Full-stack web development",
         "Mobil tətbiq inkişafı",
@@ -298,228 +364,271 @@ export const translations: Record<Language, Translations> = {
         { name: "Figma", icon: "SiFigma" },
       ],
     },
-    experimental: {
-      title: "Eksperimental işlər",
-      body: "Vibe coding ilə etdiyim eksperimental dizayn və UI işlərini daha sonra bu portfoliyoya əlavə edəcəyəm.",
-    },
     contact: {
-      title: "Əlaqə",
-      text: "Mənimlə əməkdaşlıq, layihə və ya sadəcə fikir bölüşmək üçün aşağıdakı kanallardan istifadə edə bilərsiniz.",
+      eyebrow: "Əlaqə",
+      title: "Layihəniz var?",
+      text: "Əməkdaşlıq, layihə və ya sadəcə fikir bölüşmək üçün yazın — adətən bir gün ərzində cavab verirəm.",
       emailLabel: "Email",
       email: "fuadbagiyev@gmail.com",
       githubLabel: "GitHub",
+      githubHandle: "@fuad1789",
       githubUrl: "https://github.com/fuad1789",
       whatsappLabel: "WhatsApp",
-      whatsappNumber: "+994559986410",
+      whatsappNumber: "+994 55 998 64 10",
       linkedinLabel: "LinkedIn",
+      linkedinHandle: "Fuad Bağıyev",
       linkedinUrl: "https://www.linkedin.com/in/fuad-bağıyev-b70069238/",
     },
     footer: {
-      text: `© ${new Date().getFullYear()} Fuad Bağıyev · fuadev.com`,
+      tagline: "Full-stack developer · Sumqayıt, Azərbaycan",
+      backToTop: "Yuxarı",
+      builtWith: "Next.js ilə qurulub",
     },
   },
+
   en: {
-    hero: {
+    nav: {
+      work: "Work",
+      demos: "Concepts",
+      skills: "Skills",
+      contact: "Contact",
+      skip: "Skip to content",
+    },
+    intro: {
       name: "Fuad Bagiyev",
-      subtitle: "Full-stack developer · AI-powered product builder”",
-      intro:
-        "I've been building web and mobile products for 4+ years. I'm the creator of projects like Payla.az and Unim.az. Right now I focus on minimal, real-world products powered by AI.",
-      primaryButton: "View projects",
-      secondaryButton: "About me",
+      role: "Full-stack developer",
+      statement: "I build products that real people use.",
+      lede: "A high-load LMS for course centers, a clothing marketplace and official university portals — in production for 4+ years.",
+      body: "I'm a student at Sumgayit State University. I start with the problem rather than a template — minimal, AI-supported products that end up with real users.",
+      primaryButton: "View work",
+      secondaryButton: "Get in touch",
+      availability: "Available for new projects",
+      stats: [
+        { value: "4+", label: "Years experience" },
+        { value: "8", label: "Production projects" },
+        { value: "2", label: "Official state portals" },
+        { value: "5.000 ₼", label: "Grants won" },
+      ],
     },
-    about: {
-      title: "About me",
-      body: 'I\'m a student at Sumgayit State University and a developer with 4+ years of experience building web and mobile projects. I care about solving real problems with minimal, well-designed products, often supported by AI. With a "vibe coding" mindset, I avoid generic templates and try to build in my own style.',
-      extraLine:
-        "Day to day, I work with JavaScript, React / Next.js, Node.js, Tailwind CSS, MongoDB and modern product tools.",
-    },
-   projects: {
-  title: "Projects",
-  subtitle: "High-impact products developed for real business and official environments.",
-  seeAll: "See all",
-  specs: {
-    kind: "Kind",
-    status: "Status",
-  },
-  items: [
-    {
-      name: "Azeri Edu",
-      label: "Learning Management System (LMS) · High-Load",
-      description: "An educational platform built for a course center. Features automated exam grading, course publishing, exam registration, Google OAuth authentication, and a real-time analytics dashboard.",
-      status: "Currently in active use.",
-      highlight: "Stable production environment built on Next.js, MongoDB, Nginx, and PM2 Cluster.",
-      linkLabel: "Visit website",
-      linkUrl: "https://azeri.edu.az", // Adjust the link
-      image: "/azeri-edu.png", // Adjust the image name
-    },
-    {
-      name: "Payla.az",
-      label: "B2C / C2C Marketplace · Startup",
-      description: "A B2C/C2C marketplace for clothing rentals and sales. Both businesses and individual users list items, discover matches through filters and search, and book directly. Includes payment flow, user ratings, and automated notifications.",
-      status: "Live, actively under development.",
-      highlight: "Awarded a 2000 AZN grant from SUPVC and successfully selected for an official startup incubation program.",
-      linkLabel: "Visit website",
-      linkUrl: "https://payla.az",
-      image: "/paylaaz.png",
-      award: {
-        ring: "★ SUPVC VENTURE GRANT · LAUREATE · 2024 · ",
-        line1: "AWARDED",
-        line2: "2.000 ₼",
-        line3: "INCUBATED",
+    projects: {
+      eyebrow: "Selected work",
+      title: "Projects",
+      subtitle:
+        "High-impact products developed for real business and official environments.",
+      seeAll: "GitHub",
+      specs: {
+        kind: "Kind",
+        status: "Status",
+        stack: "Stack",
       },
+      items: [
+        {
+          name: "Azeri Edu",
+          kind: "Learning Management System",
+          tag: "High-Load",
+          description:
+            "An educational platform built for a course center. Features automated exam grading, course publishing, exam registration, Google OAuth authentication, and a real-time analytics dashboard.",
+          highlight:
+            "Stable production environment built on Next.js, MongoDB, Nginx, and PM2 Cluster.",
+          status: "Live",
+          statusTone: "live",
+          stack: "Next.js · MongoDB · Nginx · PM2",
+          linkUrl: "https://azeri.edu.az",
+          image: "/azeri-edu.png",
+        },
+        {
+          name: "Payla.az",
+          kind: "B2C / C2C Marketplace",
+          tag: "Startup",
+          description:
+            "A B2C/C2C marketplace for clothing rentals and sales. Both businesses and individual users list items, discover matches through filters and search, and book directly. Includes payment flow, user ratings, and automated notifications.",
+          highlight:
+            "Awarded a 2000 AZN grant from SUPVC and selected for an official startup incubation program.",
+          status: "In development",
+          statusTone: "dev",
+          linkUrl: "https://payla.az",
+          image: "/paylaaz.png",
+          award: {
+            label: "SUPVC Venture Grant",
+            value: "2.000 ₼",
+            note: "Incubated · 2024",
+          },
+        },
+        {
+          name: "karyera.sdu.edu.az",
+          kind: "Official Career Portal",
+          tag: "SDU",
+          description:
+            "The official career portal for SDU. Aggregates job postings, internship programs, and scholarship announcements for students and alumni. Managed directly by the university's career services department.",
+          highlight:
+            "An SEO-optimized, fully responsive solution built to meet state institution standards.",
+          status: "Official",
+          statusTone: "official",
+          linkUrl: "https://karyera.sdu.edu.az",
+          image: "/sdukaryera.png",
+        },
+        {
+          name: "SDU Sustainable Development",
+          kind: "Sustainability Portal",
+          tag: "SDU",
+          description:
+            "An interactive portal showcasing SDU's contributions to the UN's 17 Sustainable Development Goals. Features a carbon footprint calculator, energy and water impact dashboard, events calendar, and SDG research reports.",
+          highlight:
+            "A fully bilingual (AZ/EN) portal with real-time data visualization via Recharts, an interactive carbon calculator, and detailed coverage of all 17 SDG goals.",
+          status: "Official",
+          statusTone: "official",
+          stack: "Next.js · Recharts · i18n",
+          linkUrl: "https://sustainability.sdu.edu.az",
+          image: "/dayaniqli-inkisaf.png",
+        },
+        {
+          name: "Unim.az",
+          kind: "Student Ecosystem",
+          tag: "SaaS",
+          description:
+            "A student portal combining academic resources, campus news, and social features. Covers daily needs like class schedules, announcements, and peer-to-peer communication.",
+          highlight:
+            "A single platform that simplifies daily campus life for students.",
+          status: "Live",
+          statusTone: "live",
+          linkUrl: "https://unim.az",
+          image: "/unimaz.png",
+        },
+        {
+          name: "Loyaltybar",
+          kind: "Barbershop Management System",
+          tag: "SaaS",
+          description:
+            "A management system for barbershops and salons. Features QR-based customer identification, digital queue management, a loyalty program, and revenue/customer analytics.",
+          highlight:
+            "A 4-tier architecture comprising an Admin panel, Business dashboard, Mobile application, and backend server.",
+          status: "Open source",
+          statusTone: "oss",
+          linkUrl: "https://github.com/fuad1789/Loyaltybar",
+          image: "/loyaltybar.png",
+        },
+        {
+          name: "Aspendos Academy",
+          kind: "International Medical Academy",
+          tag: "Healthcare",
+          description:
+            "Academy website offering international medical observership, clinical fellowship and training programs for doctors and medical students. Features personalized academic mentorship in accredited Turkish hospitals, program search, application flow and team profiles.",
+          highlight:
+            "A multilingual academic fellowship platform serving 180+ doctors from 20+ countries, with a full registration and application flow.",
+          status: "Live",
+          statusTone: "live",
+          linkUrl: "https://www.aspendosacademy.az/",
+          image: "/aspendos.png",
+        },
+        {
+          name: "Idea İnşaat",
+          kind: "Corporate Website",
+          tag: "Construction",
+          description:
+            "Corporate website for a construction and development company. Includes a project catalog, services overview, about and contact sections, with motion- and scroll-driven transitions for a rich user experience.",
+          highlight:
+            "Fully responsive, performance- and SEO-optimized, with an animation-driven user flow.",
+          status: "Live",
+          statusTone: "live",
+          linkUrl: "https://www.ideainshaat.az/az",
+          image: "/ideainshaat.png",
+        },
+      ],
     },
-    {
-      name: "karyera.sdu.edu.az",
-      label: "Official Career Portal · SDU",
-      description: "The official career portal for SDU. Aggregates job postings, internship programs, and scholarship announcements for students and alumni. Managed directly by the university's career services department.",
-      status: "In active use by the university.",
-      highlight: "An SEO-optimized, fully responsive solution built to meet state institution standards.",
-      linkLabel: "Visit website",
-      linkUrl: "https://karyera.sdu.edu.az",
-      image: "/sdukaryera.png",
+    demos: {
+      eyebrow: "Concept work",
+      title: "Concepts",
+      subtitle:
+        "Self-initiated concept sites built without a client brief — design and technology experiments.",
+      items: [
+        {
+          name: "Oksigen Clinic",
+          kind: "Healthcare",
+          description:
+            "A concept site for a clinic hospital. Online booking, departments, doctor profiles and a trilingual interface (AZ / RU / EN).",
+          stack: "Next.js · i18n routing · Tailwind CSS",
+          linkUrl: "https://oksigen-seven.vercel.app/",
+          image: "/oksigen.png",
+        },
+        {
+          name: "Megadent",
+          kind: "Healthcare",
+          description:
+            "A luxury landing page for an aesthetic dental clinic. Services, doctor profile, branches and WhatsApp integration.",
+          stack: "Next.js · Tailwind CSS · Dark & Gold UI",
+          linkUrl: "https://megadent.vercel.app/",
+          image: "/megadent.png",
+        },
+        {
+          name: "Nabran Real Estate",
+          kind: "Real Estate",
+          description:
+            "A concept property platform bringing villa rentals, land for sale and construction services together in one place.",
+          stack: "Next.js · Tailwind CSS · Search & Booking UX",
+          linkUrl: "https://nabran-emlak.vercel.app/",
+          image: "/nabran.png",
+        },
+        {
+          name: "Villa Baku",
+          kind: "Construction",
+          description:
+            "A concept landing page for a renovation and interior design studio. Turnkey projects and work portfolio.",
+          stack: "Next.js · Tailwind CSS · Editorial UI",
+          linkUrl: "https://villabaku-az.vercel.app/",
+          image: "/villabaku.png",
+        },
+        {
+          name: "Boomberry",
+          kind: "E-commerce",
+          description:
+            "A concept e-commerce platform for a premium chocolate brand. Product filters, cart and checkout flow.",
+          stack: "Next.js · Tailwind CSS · E-commerce UX",
+          linkUrl: "https://boomberry-az.vercel.app/",
+          image: "/boomberry.png",
+        },
+        {
+          name: "BFC Academy",
+          kind: "Education",
+          description:
+            "A concept platform for a language and prep center. Course search, instructor profiles and trial lesson sign-up.",
+          stack: "Next.js · Tailwind CSS · Course Catalog UX",
+          linkUrl: "https://bfc-kurslari.vercel.app/",
+          image: "/bfc.png",
+        },
+        {
+          name: "Zaman Courses",
+          kind: "Education",
+          description:
+            "A concept landing page for a tutoring center. Programs, trial lesson sign-up and WhatsApp integration.",
+          stack: "Next.js · Tailwind CSS · Lead Capture UX",
+          linkUrl: "https://zaman-kurslari.vercel.app/",
+          image: "/zaman.png",
+        },
+        {
+          name: "Qafqaz Prep",
+          kind: "Education",
+          description:
+            "A concept landing page for university entrance prep courses. Course list, admission stats and sign-up flow.",
+          stack: "Next.js · Tailwind CSS · Conversion UX",
+          linkUrl: "https://qafqaz-tedris-merkezi.vercel.app/",
+          image: "/qafqaz.png",
+        },
+        {
+          name: "Oxu Education Center",
+          kind: "Education",
+          description:
+            "A concept site for a tutoring center serving grades 1–9. Subject course catalogue and monthly parent reports.",
+          stack: "Next.js · Tailwind CSS · Parent-Facing UX",
+          linkUrl: "https://oxutedris-az.vercel.app/",
+          image: "/oxutedris.png",
+        },
+      ],
     },
-    {
-      name: "Unim.az",
-      label: "Student Ecosystem · SaaS",
-      description: "A student portal combining academic resources, campus news, and social features. Covers daily needs like class schedules, announcements, and peer-to-peer communication.",
-      status: "Live with real users.",
-      highlight: "A single platform that simplifies daily campus life for students.",
-      linkLabel: "Visit website",
-      linkUrl: "https://unim.az",
-      image: "/unimaz.png",
-    },
-    {
-      name: "Loyaltybar",
-      label: "Barbershop Management System (SaaS)",
-      description: "A management system for barbershops and salons. Features QR-based customer identification, digital queue management, a loyalty program, and revenue/customer analytics.",
-      status: "Open-source project.",
-      highlight: "A large-scale, 4-tier architecture comprising an Admin panel, Business dashboard, Mobile application, and robust Backend server.",
-      linkLabel: "View on GitHub",
-      linkUrl: "https://github.com/fuad1789/Loyaltybar",
-      image: "/loyaltybar.png",
-    },
-    {
-      name: "SDU Sustainable Development",
-      label: "Sustainability Portal · SDU",
-      description: "An interactive portal showcasing SDU's contributions to the UN's 17 Sustainable Development Goals. Features a carbon footprint calculator, energy and water impact dashboard, events calendar, and SDG research reports.",
-      status: "Live as the university's official sustainability platform.",
-      highlight: "A fully bilingual (AZ/EN) portal with real-time data visualization via Recharts, an interactive carbon calculator, and detailed coverage of all 17 SDG goals.",
-      linkLabel: "Visit website",
-      linkUrl: "https://sustainability.sdu.edu.az",
-      image: "/dayaniqli-inkisaf.png",
-    },
-    {
-      name: "Idea İnşaat",
-      label: "Construction · Corporate Website",
-      description: "Corporate website for a construction and development company. Includes a project catalog, services overview, about and contact sections, with motion- and scroll-driven transitions for a rich user experience.",
-      status: "Live, in active corporate use.",
-      highlight: "Fully responsive, performance- and SEO-optimized, with an animation-driven user flow.",
-      linkLabel: "Visit website",
-      linkUrl: "https://www.ideainshaat.az/az",
-      image: "/ideainshaat.png",
-    },
-    {
-      name: "Aspendos Academy",
-      label: "Healthcare · International Medical Academy",
-      description: "Academy website offering international medical observership, clinical fellowship and training programs for doctors and medical students. Features personalized academic mentorship in accredited Turkish hospitals, program search, application flow and team profiles.",
-      status: "Live, in active production use.",
-      highlight: "A multilingual academic fellowship platform serving 180+ doctors from 20+ countries, with a full registration and application flow.",
-      linkLabel: "Visit website",
-      linkUrl: "https://www.aspendosacademy.az/",
-      image: "/aspendos.png",
-    },
-  ],
-},
-   demos: {
-  title: "Demos",
-  subtitle: "Concept and showcase work — not in production, just design and technology experiments.",
-  badge: "Demo",
-  items: [
-    {
-      name: "Oksigen Clinic",
-      label: "Healthcare · Clinic Hospital Website",
-      description: "A concept website for a clinic hospital based in Baku. Features online appointment booking, departments (Surgery, Cardiology, Diagnostics, Pediatrics, Ophthalmology), doctor profiles and 24/7 contact. Trilingual interface (AZ / RU / EN).",
-      stack: "Next.js · i18n routing · Tailwind CSS",
-      linkLabel: "View demo",
-      linkUrl: "https://oksigen-seven.vercel.app/",
-      image: "/oksigen.png",
-    },
-    {
-      name: "Megadent",
-      label: "Healthcare · Aesthetic Dental Clinic",
-      description: "A luxury landing page designed for Megadent aesthetic dental clinic, led by PhD. Sahib Bilalzade. Covers services (implants, orthodontics, endodontics, whitening), doctor profile, branches, reviews and WhatsApp integration.",
-      stack: "Next.js · Tailwind CSS · Dark & Gold UI",
-      linkLabel: "View demo",
-      linkUrl: "https://megadent.vercel.app/",
-      image: "/megadent.png",
-    },
-    {
-      name: "Nabran Real Estate",
-      label: "Real Estate · Resort Property Platform",
-      description: "A real estate platform that brings together daily villa rentals, land for sale, and construction / renovation services in Nabran — all in one place. Includes search by location, property type and date, plus rental / sale / construction categories and a property catalogue.",
-      stack: "Next.js · Tailwind CSS · Search & Booking UX",
-      linkLabel: "View demo",
-      linkUrl: "https://nabran-emlak.vercel.app/",
-      image: "/nabran.jpg",
-    },
-    {
-      name: "Villa Baku",
-      label: "Construction · Build, Renovation & Interior Studio",
-      description: "A concept landing page for a Baku-based studio specialising in renovation and interior design for apartments, villas and commercial spaces. Covers turnkey projects, services catalogue, work portfolio and 14 years of experience.",
-      stack: "Next.js · Tailwind CSS · Editorial Architecture UI",
-      linkLabel: "View demo",
-      linkUrl: "https://villabaku-az.vercel.app/",
-      image: "/villabaku.png",
-    },
-    {
-      name: "Zaman Courses",
-      label: "Education · Tutoring Center",
-      description: "A concept landing page for an education center with 18 years of experience. Covers Master's, Study Abroad and university entrance prep programs, trial lesson sign-up, admission stats (98%) and WhatsApp integration.",
-      stack: "Next.js · Tailwind CSS · Lead Capture UX",
-      linkLabel: "View demo",
-      linkUrl: "https://zaman-kurslari.vercel.app/",
-      image: "/zaman.png",
-    },
-    {
-      name: "BFC Academy",
-      label: "Education · Language & Prep Center",
-      description: "Bright Future Center — a concept platform for one of Baku's largest tutoring networks. Covers English, IELTS, TOEFL and university entrance prep courses, course search, instructor profiles, trial lesson sign-up form and official Cambridge / IELTS / Pearson / ETS Global partnerships.",
-      stack: "Next.js · Tailwind CSS · Course Catalog UX",
-      linkLabel: "View demo",
-      linkUrl: "https://bfc-kurslari.vercel.app/",
-      image: "/bfc.png",
-    },
-    {
-      name: "Qafqaz Prep",
-      label: "Education · University Entrance Prep",
-      description: "A concept landing page for Qafqaz Hazırlıq Kursları, operating since 2011. Covers entrance exam prep programs, course list, admission stats (98%), 15+ years of experience, sign-up flow and WhatsApp integration.",
-      stack: "Next.js · Tailwind CSS · Conversion-Focused UX",
-      linkLabel: "View demo",
-      linkUrl: "https://qafqaz-tedris-merkezi.vercel.app/",
-      image: "/qafqaz.png",
-    },
-    {
-      name: "Oxu Education Center",
-      label: "Education · K-9 School Tutoring Center",
-      description: "A concept site for a tutoring center serving grades 1–9. Covers child development, safe learning environment and monthly parent reports, plus a catalogue of entrance, subject and English language courses, 1000+ alumni stats and WhatsApp integration.",
-      stack: "Next.js · Tailwind CSS · Parent-Facing UX",
-      linkLabel: "View demo",
-      linkUrl: "https://oxutedris-az.vercel.app/",
-      image: "/oxutedris.png",
-    },
-    {
-      name: "Boomberry",
-      label: "E-commerce · Premium Chocolate Brand",
-      description: "A concept e-commerce platform built for a premium chocolate and gifting brand. Includes strawberry bouquet, Dubai chocolate and corporate gift categories, product filters, cart and checkout flow.",
-      stack: "Next.js · Tailwind CSS · E-commerce UX",
-      linkLabel: "View demo",
-      linkUrl: "https://boomberry-az.vercel.app/",
-      image: "/boomberry.png",
-    },
-  ],
-},
     skills: {
-      title: "Skills & Technologies",
+      eyebrow: "Capabilities",
+      title: "What I work with",
+      servicesTitle: "Services",
+      technologiesTitle: "Technologies",
       services: [
         "Full-stack web development",
         "Mobile app development",
@@ -537,24 +646,25 @@ export const translations: Record<Language, Translations> = {
         { name: "Figma", icon: "SiFigma" },
       ],
     },
-    experimental: {
-      title: "Experimental work",
-      body: "I also build experimental UI and design projects in a vibe-coding style, which I'll add to this portfolio later.",
-    },
     contact: {
-      title: "Contact",
-      text: "For collaboration, projects or just to share an idea, feel free to reach out.",
+      eyebrow: "Contact",
+      title: "Got a project?",
+      text: "For collaboration, projects or just to share an idea — I usually reply within a day.",
       emailLabel: "Email",
       email: "fuadbagiyev@gmail.com",
       githubLabel: "GitHub",
+      githubHandle: "@fuad1789",
       githubUrl: "https://github.com/fuad1789",
       whatsappLabel: "WhatsApp",
-      whatsappNumber: "+994559986410",
+      whatsappNumber: "+994 55 998 64 10",
       linkedinLabel: "LinkedIn",
+      linkedinHandle: "Fuad Bagiyev",
       linkedinUrl: "https://www.linkedin.com/in/fuad-bağıyev-b70069238/",
     },
     footer: {
-      text: `© ${new Date().getFullYear()} Fuad Bagiyev · fuadev.com`,
+      tagline: "Full-stack developer · Sumgayit, Azerbaijan",
+      backToTop: "Top",
+      builtWith: "Built with Next.js",
     },
   },
 };

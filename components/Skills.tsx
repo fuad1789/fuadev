@@ -1,20 +1,22 @@
 'use client';
 
-import { useLanguage } from '@/app/providers';
-import { motion } from 'framer-motion';
+import type { ElementType } from 'react';
 import {
+  SiFigma,
+  SiGit,
   SiJavascript,
-  SiTypescript,
-  SiReact,
+  SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
+  SiReact,
   SiTailwindcss,
-  SiMongodb,
-  SiGit,
-  SiFigma,
+  SiTypescript,
 } from 'react-icons/si';
+import { useLanguage } from '@/app/providers';
+import Reveal from './ui/Reveal';
+import SectionHeader from './ui/SectionHeader';
 
-const iconMap: Record<string, React.ElementType> = {
+const ICONS: Record<string, ElementType> = {
   SiJavascript,
   SiTypescript,
   SiReact,
@@ -30,71 +32,37 @@ export default function Skills() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-12">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            {t.skills.title}
-          </h2>
+    <section id="skills" className="container-page py-16 sm:py-24">
+      <SectionHeader eyebrow={t.skills.eyebrow} title={t.skills.title} />
 
-          {/* Services / What I do */}
-          <div className="mb-10">
-            <h3 className="text-lg font-semibold mb-4 text-gray-400 text-center sm:text-left">
-              {t.hero.secondaryButton === "Mən kiməm?" ? "Xidmətlər" : "Services"}
-            </h3>
-            <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
-              {t.skills.services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="px-4 py-2 backdrop-blur-md bg-white/5 border border-white/10 rounded-full text-sm text-gray-200"
-                >
-                  {service}
-                </motion.div>
-              ))}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {t.skills.services.map((service, i) => (
+          <Reveal key={service} delay={i * 0.05} y={14}>
+            <div className="card h-full px-5 py-5">
+              <p className="text-base font-medium">{service}</p>
             </div>
-          </div>
-
-          {/* Technologies */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-gray-400 text-center sm:text-left">
-              {t.hero.secondaryButton === "Mən kiməm?" ? "Texnologiyalar" : "Technologies"}
-            </h3>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 sm:gap-6">
-              {t.skills.technologies.map((tech, index) => {
-                const Icon = iconMap[tech.icon];
-                return (
-                  <motion.div
-                    key={tech.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-                    className="flex flex-col items-center justify-center p-4 backdrop-blur-md bg-white/5 border border-white/10 rounded-xl transition-colors group"
-                  >
-                    {Icon && (
-                      <Icon className="text-3xl sm:text-4xl mb-2 text-gray-400 group-hover:text-white transition-colors" />
-                    )}
-                    <span className="text-xs sm:text-sm text-gray-400 group-hover:text-white transition-colors">
-                      {tech.name}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </motion.div>
+          </Reveal>
+        ))}
       </div>
+
+      <Reveal delay={0.1}>
+        <div className="mt-10">
+          <p className="text-sm font-medium text-fg-3">{t.skills.technologiesTitle}</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {t.skills.technologies.map((tech) => {
+              const Icon = ICONS[tech.icon];
+              return (
+                <li key={tech.name}>
+                  <span className="pill px-3 py-1.5 text-[0.8125rem]">
+                    {Icon ? <Icon aria-hidden className="h-3.5 w-3.5" /> : null}
+                    {tech.name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </Reveal>
     </section>
   );
 }
-

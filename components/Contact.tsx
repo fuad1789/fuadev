@@ -1,76 +1,68 @@
 'use client';
 
 import { useLanguage } from '@/app/providers';
-import { motion } from 'framer-motion';
+import { toWhatsAppLink } from '@/lib/format';
+import Reveal from './ui/Reveal';
 
 export default function Contact() {
   const { t } = useLanguage();
 
+  const secondaryLinks = [
+    { label: t.contact.githubLabel, value: t.contact.githubHandle, href: t.contact.githubUrl },
+    {
+      label: t.contact.linkedinLabel,
+      value: t.contact.linkedinHandle,
+      href: t.contact.linkedinUrl,
+    },
+  ];
+
   return (
-    <section className="py-12">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="backdrop-blur-md bg-white/5 border border-white/10 rounded-xl p-6 sm:p-8"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">{t.contact.title}</h2>
-          <p className="text-gray-300 text-sm sm:text-base mb-6 leading-relaxed">
+    <section id="contact" className="container-page py-16 sm:py-24">
+      <Reveal>
+        {/* Closing CTA panel — one clear action, not a table of channels */}
+        <div className="card rounded-3xl px-6 py-12 text-center sm:px-12 sm:py-16">
+          <span className="text-sm font-medium text-accent">{t.contact.eyebrow}</span>
+
+          <h2 className="mx-auto mt-2 max-w-2xl text-3xl font-semibold sm:text-[2.5rem] sm:leading-[1.1]">
+            {t.contact.title}
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-prose text-base leading-relaxed text-fg-2">
             {t.contact.text}
           </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <motion.a
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
               href={`mailto:${t.contact.email}`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-all"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-fg px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-auto"
             >
-              <div className="text-xs text-gray-400 mb-1">{t.contact.emailLabel}</div>
-              <div className="text-sm text-white">{t.contact.email}</div>
-            </motion.a>
-            
-            <motion.a
-              href={t.contact.githubUrl}
+              {t.contact.email}
+            </a>
+            <a
+              href={toWhatsAppLink(t.contact.whatsappNumber)}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-all"
+              className="inline-flex w-full items-center justify-center rounded-lg border border-line bg-bg px-5 py-2.5 text-sm font-medium shadow-sm transition-colors hover:bg-muted sm:w-auto"
             >
-              <div className="text-xs text-gray-400 mb-1">{t.contact.githubLabel}</div>
-              <div className="text-sm text-white">{t.contact.githubUrl}</div>
-            </motion.a>
-            
-            <motion.a
-              href={`https://wa.me/${t.contact.whatsappNumber.replace(/[^0-9]/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-all"
-            >
-              <div className="text-xs text-gray-400 mb-1">{t.contact.whatsappLabel}</div>
-              <div className="text-sm text-white">{t.contact.whatsappNumber}</div>
-            </motion.a>
-            
-            <motion.a
-              href={t.contact.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-all"
-            >
-              <div className="text-xs text-gray-400 mb-1">{t.contact.linkedinLabel}</div>
-              <div className="text-sm text-white">Fuad Bagiyev</div>
-            </motion.a>
+              {t.contact.whatsappLabel}
+            </a>
           </div>
-        </motion.div>
-      </div>
+
+          <div className="mt-8 flex items-center justify-center gap-6 text-sm">
+            {secondaryLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-fg-2 underline-offset-4 transition-colors hover:text-fg hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
-
