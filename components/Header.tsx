@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/app/providers';
 import type { Language } from '@/lib/translations';
 
@@ -7,31 +9,42 @@ const LANGUAGES: Language[] = ['az', 'en'];
 
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
+  /** Section anchors only resolve on the home page; elsewhere they route back to it. */
+  const section = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const navItems = [
-    { href: '#work', label: t.nav.work },
-    { href: '#concepts', label: t.nav.demos },
-    { href: '#skills', label: t.nav.skills },
+    { href: section('#work'), label: t.nav.work, alwaysVisible: false },
+    { href: section('#concepts'), label: t.nav.demos, alwaysVisible: false },
+    { href: section('#skills'), label: t.nav.skills, alwaysVisible: false },
+    { href: '/prompts', label: t.nav.prompts, alwaysVisible: true },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-md">
       <div className="container-page">
         <div className="flex h-header items-center justify-between gap-4">
-          <a href="#top" className="text-[0.9375rem] font-semibold tracking-tight">
+          <Link
+            href={isHome ? '#top' : '/'}
+            className="text-[0.9375rem] font-semibold tracking-tight"
+          >
             fuadev
-          </a>
+          </Link>
 
-          <nav aria-label="Primary" className="hidden md:block">
+          <nav aria-label="Primary">
             <ul className="flex items-center gap-1">
               {navItems.map((item) => (
-                <li key={item.href}>
-                  <a
+                <li key={item.href} className={item.alwaysVisible ? '' : 'hidden md:block'}>
+                  <Link
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm text-fg-2 transition-colors hover:bg-muted hover:text-fg"
+                    className={`rounded-lg px-3 py-2 text-sm transition-colors hover:bg-muted hover:text-fg ${
+                      item.alwaysVisible ? 'font-medium text-fg' : 'text-fg-2'
+                    }`}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -57,12 +70,12 @@ export default function Header() {
               ))}
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              href={section('#contact')}
               className="hidden rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:inline-flex"
             >
               {t.nav.contact}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

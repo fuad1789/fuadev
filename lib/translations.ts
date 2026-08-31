@@ -39,6 +39,7 @@ export interface Translations {
     work: string;
     demos: string;
     skills: string;
+    prompts: string;
     contact: string;
     skip: string;
   };
@@ -72,6 +73,31 @@ export interface Translations {
     title: string;
     subtitle: string;
     items: DemoItem[];
+  };
+  /** Copy-and-paste prompt library — chrome only, the prompts live in lib/prompts.ts. */
+  prompts: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    lede: string;
+    seeAll: string;
+    open: string;
+    back: string;
+    copy: string;
+    copied: string;
+    copyFailed: string;
+    copyFull: string;
+    viewFormatted: string;
+    viewRaw: string;
+    howToTitle: string;
+    /** Generic steps; the prompt's own input instruction is appended as the last one. */
+    howToSteps: string[];
+    meta: {
+      category: string;
+      words: string;
+      models: string;
+      updated: string;
+    };
   };
   skills: {
     eyebrow: string;
@@ -109,6 +135,7 @@ export const translations: Record<Language, Translations> = {
       work: "İşlər",
       demos: "Konseptlər",
       skills: "Bacarıqlar",
+      prompts: "Promptlar",
       contact: "Əlaqə",
       skip: "Məzmuna keç",
     },
@@ -342,6 +369,33 @@ export const translations: Record<Language, Translations> = {
         },
       ],
     },
+    prompts: {
+      eyebrow: "Pulsuz promptlar",
+      title: "Promptlar",
+      subtitle:
+        "Videolarımda istifadə etdiyim promptların tam mətni. Kopyala, AI-a yapışdır, işlət — qeydiyyat yoxdur.",
+      lede: "Promptlar sosial şəbəkələrdə mesaj kimi göndərilə bilməyəcək qədər uzundur, ona görə hamısı burada, tam və kəsilməmiş formada saxlanılır.",
+      seeAll: "Bütün promptlar",
+      open: "Promptu aç",
+      back: "Promptlar",
+      copy: "Kopyala",
+      copied: "Kopyalandı",
+      copyFailed: "Kopyalanmadı — mətni əl ilə seçin",
+      copyFull: "Tam promptu kopyala",
+      viewFormatted: "Oxunaqlı",
+      viewRaw: "Xam mətn",
+      howToTitle: "Necə istifadə etməli",
+      howToSteps: [
+        "Promptu tam kopyalayın.",
+        "Claude, ChatGPT və ya Gemini-də yeni söhbət açın.",
+      ],
+      meta: {
+        category: "Kateqoriya",
+        words: "Söz sayı",
+        models: "Model",
+        updated: "Yeniləndi",
+      },
+    },
     skills: {
       eyebrow: "Bacarıqlar",
       title: "Nə ilə işləyirəm",
@@ -391,6 +445,7 @@ export const translations: Record<Language, Translations> = {
       work: "Work",
       demos: "Concepts",
       skills: "Skills",
+      prompts: "Prompts",
       contact: "Contact",
       skip: "Skip to content",
     },
@@ -623,6 +678,33 @@ export const translations: Record<Language, Translations> = {
           image: "/oxutedris.png",
         },
       ],
+    },
+    prompts: {
+      eyebrow: "Free prompts",
+      title: "Prompts",
+      subtitle:
+        "The full text of the prompts I use in my videos. Copy it, paste it into your AI, run it — no sign-up.",
+      lede: "These prompts are too long to send as a message on social media, so they live here instead — complete and untruncated.",
+      seeAll: "All prompts",
+      open: "Open prompt",
+      back: "Prompts",
+      copy: "Copy",
+      copied: "Copied",
+      copyFailed: "Copy failed — select the text manually",
+      copyFull: "Copy the full prompt",
+      viewFormatted: "Readable",
+      viewRaw: "Raw text",
+      howToTitle: "How to use it",
+      howToSteps: [
+        "Copy the whole prompt.",
+        "Open a new chat in Claude, ChatGPT or Gemini.",
+      ],
+      meta: {
+        category: "Category",
+        words: "Word count",
+        models: "Models",
+        updated: "Updated",
+      },
     },
     skills: {
       eyebrow: "Capabilities",
