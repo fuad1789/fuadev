@@ -35,6 +35,25 @@ export interface LoadedPrompt extends Prompt {
 
 export const prompts: Prompt[] = [
   {
+    slug: "local-business-website-prompt",
+    title: "Local Business Website Prompt",
+    category: {
+      az: "Veb sayt dizaynı",
+      en: "Website design",
+    },
+    summary: {
+      az: "Kiçik, fiziki bizneslər — restoran, salon, təmir emalatxanası, klinika, tikinti şirkəti — üçün tək fayllıq sayt qurdurmaq üçün prompt. Bənövşəyi-mavi qradienti, boş şüarları və saxta etibar bloklarını adbaad qadağan edir, saytı isə tək bir hədəfin ətrafında qurur: zəng, sifariş və ya ünvana gəliş.",
+      en: "The prompt for building a single-file site for a local, physical business — restaurant, salon, repair shop, clinic, construction company. It bans the purple-blue gradient, empty slogans and fake trust blocks by name, and builds the page around one job: a call, an order or a visit.",
+    },
+    input: {
+      az: "Promptu yapışdırın, «BUSINESS DETAILS» bölməsindəki sətirləri biznesin real məlumatı ilə doldurun və «COPY RULES» hissəsindəki [LANGUAGE] yerinə saytın dilini (məsələn, Azərbaycan dili) yazıb göndərin.",
+      en: "Paste the prompt, fill the lines under “BUSINESS DETAILS” with the real business information, and replace [LANGUAGE] under “COPY RULES” with the language the site should be written in.",
+    },
+    tags: ["Web design", "Landing page", "Local business", "Conversion"],
+    models: "Claude · GPT · Gemini",
+    updated: "2026-09-05",
+  },
+  {
     slug: "master-website-prompt",
     title: "Master Website Prompt",
     category: {
