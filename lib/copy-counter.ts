@@ -94,16 +94,38 @@ export async function loadCopyCounts(): Promise<CopyCounts> {
 }
 
 /**
- * Records one copy. `keepalive` lets the request outlive the page, because a
- * visitor who copies a prompt often navigates away in the same second.
+ * The write reply carries the stored count, which beats anything the client
+ * can guess. A reply for a different slug, or one the script marked as failed,
+ * is treated as no answer at all.
  */
-export async function sendCopyEvent(slug: string): Promise<void> {
-  if (!COPY_COUNTER_ENDPOINT || !isCountableSlug(slug)) return;
+function toRecordedCount(payload: unknown, slug: string): number | null {
+  if (typeof payload !== 'object' || payload === null) return null;
 
-  await fetch(COPY_COUNTER_ENDPOINT, {
+  const body = payload as { ok?: unknown; slug?: unknown; count?: unknown };
+  if (body.ok !== true || body.slug !== slug) return null;
+
+  const count = typeof body.count === 'number' ? body.count : Number(body.count);
+  return Number.isFinite(count) && count >= 0 ? Math.floor(count) : null;
+}
+
+/**
+ * Records one copy and returns the count the sheet now holds, or null when the
+ * script declined the write. `keepalive` lets the request outlive the page,
+ * because a visitor who copies a prompt often navigates away in the same second.
+ */
+export async function sendCopyEvent(slug: string): Promise<number | null> {
+  if (!COPY_COUNTER_ENDPOINT || !isCountableSlug(slug)) return null;
+
+  const response = await fetch(COPY_COUNTER_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({ slug }),
     keepalive: true,
   });
+
+  if (!response.ok) {
+    throw new Error(`Copy counter responded with ${response.status}`);
+  }
+
+  return toRecordedCount(await response.json(), slug);
 }

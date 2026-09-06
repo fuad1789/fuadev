@@ -90,13 +90,23 @@ export default function CopyCountProvider({
   const registerCopy = useCallback((slug: string) => {
     if (!COPY_COUNTER_ENDPOINT || !isCountableSlug(slug)) return;
 
-    // Optimistic, and deliberately never rolled back — a number that ticks up
-    // and then drops back reads as a bug, and the real value arrives on reload.
+    // Optimistic, so the number reacts in the same frame as the click. Apps
+    // Script takes seconds to reply and the visitor is looking at the button now.
     setCounts((current) => ({ ...current, [slug]: (current[slug] ?? 0) + 1 }));
 
-    void sendCopyEvent(slug).catch(() => {
-      // The copy itself already succeeded; a lost count is not worth surfacing.
-    });
+    sendCopyEvent(slug)
+      .then((recorded) => {
+        // The reply carries what the sheet actually stored, which is the only
+        // number that survives a reload — adopt it over the local guess.
+        if (recorded === null) return;
+        setCounts((current) => ({
+          ...current,
+          [slug]: Math.max(current[slug] ?? 0, recorded),
+        }));
+      })
+      .catch(() => {
+        // The copy itself already succeeded; a lost count is not worth surfacing.
+      });
   }, []);
 
   const value = useMemo<CopyCountsValue>(
