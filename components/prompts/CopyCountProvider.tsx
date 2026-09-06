@@ -2,13 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import {
-  COPY_COUNTER_ENDPOINT,
-  fetchCopyCounts,
-  isCountableSlug,
-  sendCopyEvent,
-  type CopyCounts,
-} from '@/lib/copy-counter';
+import { fetchCopyCounts, isCountableSlug, sendCopyEvent, type CopyCounts } from '@/lib/copy-counter';
 
 interface CopyCountsValue {
   counts: CopyCounts;
@@ -66,15 +60,13 @@ export default function CopyCountProvider({
   const [ready, setReady] = useState(hasServerCounts);
 
   useEffect(() => {
-    if (!COPY_COUNTER_ENDPOINT) return;
-
     const controller = new AbortController();
 
     // The server-rendered numbers come from a page that revalidates on an
     // interval, so they can be a minute or two behind. This refetch corrects
     // them in the background: the badge is already on screen from the first
     // paint, and it only ever moves up to the live value.
-    fetchCopyCounts({ signal: controller.signal })
+    fetchCopyCounts(controller.signal)
       .then((loaded) => {
         setCounts((current) => mergeCounts(current, loaded));
         setReady(true);
@@ -88,7 +80,7 @@ export default function CopyCountProvider({
   }, []);
 
   const registerCopy = useCallback((slug: string) => {
-    if (!COPY_COUNTER_ENDPOINT || !isCountableSlug(slug)) return;
+    if (!isCountableSlug(slug)) return;
 
     // Optimistic, so the number reacts in the same frame as the click. Apps
     // Script takes seconds to reply and the visitor is looking at the button now.

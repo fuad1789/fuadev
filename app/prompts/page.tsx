@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import CopyCountProvider from '@/components/prompts/CopyCountProvider';
 import PromptsIndex from '@/components/prompts/PromptsIndex';
-import { COPY_COUNTS_REVALIDATE_SECONDS, loadCopyCounts } from '@/lib/copy-counter';
+import { COPY_COUNTS_REVALIDATE_SECONDS } from '@/lib/copy-counter';
+import { loadCopyCounts } from '@/lib/copy-counter.server';
 import { loadPrompts } from '@/lib/prompts.server';
 
 /** Rebuilds the page periodically so the copy counts do not go stale. */

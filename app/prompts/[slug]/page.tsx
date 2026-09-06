@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CopyCountProvider from '@/components/prompts/CopyCountProvider';
 import PromptDetail from '@/components/prompts/PromptDetail';
-import { COPY_COUNTS_REVALIDATE_SECONDS, loadCopyCounts } from '@/lib/copy-counter';
+import { COPY_COUNTS_REVALIDATE_SECONDS } from '@/lib/copy-counter';
+import { loadCopyCounts } from '@/lib/copy-counter.server';
 import { findPrompt, prompts } from '@/lib/prompts';
 import { loadPrompt } from '@/lib/prompts.server';
 

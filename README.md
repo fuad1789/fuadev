@@ -80,15 +80,22 @@ Sheet, written by a Google Apps Script web app — no database, no paid service.
    Deploy as a web app with access set to **Anyone**).
 2. Copy the `/exec` URL into `.env.local`:
    ```
-   NEXT_PUBLIC_COPY_COUNTER_URL=https://script.google.com/macros/s/.../exec
+   COPY_COUNTER_URL=https://script.google.com/macros/s/.../exec
    ```
 3. Add the same variable in the Vercel project settings and redeploy.
 
 Without the variable the site works exactly as before — the counter is hidden
 instead of broken. A prompt with zero copies shows no number either.
 
-The web app URL is public by design, so treat the numbers as a vanity metric:
-anyone who finds it could inflate a count.
+The browser never calls Apps Script directly. It goes through `/api/prompt-copies`,
+which is same-origin (so there is no CORS surface to fail silently) and answers
+reads from a ten-second server cache instead of making every visitor wait the
+two to four seconds Apps Script needs. The pages also render their counts on the
+server, so a number is on screen in the first paint.
+
+`NEXT_PUBLIC_COPY_COUNTER_URL` is still read as a fallback, but it ships the URL
+to every visitor; prefer `COPY_COUNTER_URL`. Either way the numbers are a vanity
+metric — anyone can post to the route, there is no rate limiting.
 
 ## Build for Production
 
