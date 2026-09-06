@@ -3,8 +3,8 @@
 import { useMemo, useState } from 'react';
 import { useLanguage } from '@/app/providers';
 import { parseMarkdown } from '@/lib/markdown';
-import CopyButton from './CopyButton';
 import PromptBody from './PromptBody';
+import PromptCopyButton from './PromptCopyButton';
 
 type ViewMode = 'formatted' | 'raw';
 
@@ -16,7 +16,7 @@ type ViewMode = 'formatted' | 'raw';
  * The document scrolls inside its own box so the copy control in the header
  * stays reachable while reading.
  */
-export default function PromptView({ body }: { body: string }) {
+export default function PromptView({ slug, body }: { slug: string; body: string }) {
   const { t } = useLanguage();
   const [mode, setMode] = useState<ViewMode>('formatted');
   const blocks = useMemo(() => parseMarkdown(body), [body]);
@@ -45,7 +45,8 @@ export default function PromptView({ body }: { body: string }) {
           ))}
         </div>
 
-        <CopyButton
+        <PromptCopyButton
+          slug={slug}
           text={body}
           variant="quiet"
           labels={{

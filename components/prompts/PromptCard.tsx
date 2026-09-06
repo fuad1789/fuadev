@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useLanguage } from '@/app/providers';
 import type { Prompt } from '@/lib/prompts';
-import CopyButton from './CopyButton';
+import PromptCopyButton from './PromptCopyButton';
 
 interface PromptCardProps {
   prompt: Prompt;
@@ -38,7 +38,7 @@ export default function PromptCard({ prompt, body }: PromptCardProps) {
         ))}
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
         <span className="text-sm font-medium text-fg">
           {t.prompts.open}
           <span aria-hidden className="ml-1.5">
@@ -47,7 +47,8 @@ export default function PromptCard({ prompt, body }: PromptCardProps) {
         </span>
 
         {body ? (
-          <CopyButton
+          <PromptCopyButton
+            slug={prompt.slug}
             text={body}
             variant="quiet"
             className="relative z-10"

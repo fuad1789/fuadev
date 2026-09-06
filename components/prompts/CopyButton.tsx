@@ -12,6 +12,8 @@ interface CopyButtonProps {
   /** `solid` for the primary action, `quiet` for the repeated inline buttons. */
   variant?: 'solid' | 'quiet';
   className?: string;
+  /** Fires only when the text actually reached the clipboard. */
+  onCopied?: () => void;
 }
 
 /**
@@ -48,6 +50,7 @@ export default function CopyButton({
   labels,
   variant = 'solid',
   className = '',
+  onCopied,
 }: CopyButtonProps) {
   const [state, setState] = useState<CopyState>('idle');
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -68,12 +71,13 @@ export default function CopyButton({
     try {
       await writeToClipboard(text);
       setState('copied');
+      onCopied?.();
     } catch {
       // The raw text is always on the page, so a failure degrades to manual selection.
       setState('error');
     }
     scheduleReset();
-  }, [text, scheduleReset]);
+  }, [text, scheduleReset, onCopied]);
 
   const label =
     state === 'copied' ? labels.copied : state === 'error' ? labels.failed : labels.copy;

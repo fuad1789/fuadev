@@ -70,6 +70,26 @@ The site uses Tailwind CSS. You can customize colors, spacing, and other styles 
 - Component files for component-specific styles
 - `app/globals.css` for global styles
 
+## Prompt Copy Counter
+
+Each prompt shows how many times it has been copied. The counts live in a Google
+Sheet, written by a Google Apps Script web app — no database, no paid service.
+
+1. Deploy `scripts/copy-counter.gs`. The full setup steps are in the comment at
+   the top of that file (create a sheet → Extensions → Apps Script → paste →
+   Deploy as a web app with access set to **Anyone**).
+2. Copy the `/exec` URL into `.env.local`:
+   ```
+   NEXT_PUBLIC_COPY_COUNTER_URL=https://script.google.com/macros/s/.../exec
+   ```
+3. Add the same variable in the Vercel project settings and redeploy.
+
+Without the variable the site works exactly as before — the counter is hidden
+instead of broken. A prompt with zero copies shows no number either.
+
+The web app URL is public by design, so treat the numbers as a vanity metric:
+anyone who finds it could inflate a count.
+
 ## Build for Production
 
 ```bash

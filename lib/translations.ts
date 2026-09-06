@@ -87,6 +87,8 @@ export interface Translations {
     copied: string;
     copyFailed: string;
     copyFull: string;
+    /** Follows the number: "1.204 dəfə kopyalanıb" / "1,204 copies". */
+    copies: string;
     viewFormatted: string;
     viewRaw: string;
     howToTitle: string;
@@ -382,6 +384,7 @@ export const translations: Record<Language, Translations> = {
       copied: "Kopyalandı",
       copyFailed: "Kopyalanmadı — mətni əl ilə seçin",
       copyFull: "Tam promptu kopyala",
+      copies: "dəfə kopyalanıb",
       viewFormatted: "Oxunaqlı",
       viewRaw: "Xam mətn",
       howToTitle: "Necə istifadə etməli",
@@ -692,6 +695,7 @@ export const translations: Record<Language, Translations> = {
       copied: "Copied",
       copyFailed: "Copy failed — select the text manually",
       copyFull: "Copy the full prompt",
+      copies: "copies",
       viewFormatted: "Readable",
       viewRaw: "Raw text",
       howToTitle: "How to use it",

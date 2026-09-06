@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/app/providers';
 import { toDisplayCount, toDisplayDate } from '@/lib/format';
 import type { LoadedPrompt } from '@/lib/prompts';
-import CopyButton from './CopyButton';
+import PromptCopyButton from './PromptCopyButton';
 import PromptView from './PromptView';
 
 export default function PromptDetail({ prompt }: { prompt: LoadedPrompt }) {
@@ -73,9 +73,12 @@ export default function PromptDetail({ prompt }: { prompt: LoadedPrompt }) {
               ))}
             </ol>
 
-            <CopyButton
+            <PromptCopyButton
+              slug={prompt.slug}
               text={prompt.body}
-              className="mt-5 w-full"
+              layout="stacked"
+              className="mt-5"
+              buttonClassName="w-full"
               labels={{
                 copy: t.prompts.copyFull,
                 copied: t.prompts.copied,
@@ -86,7 +89,7 @@ export default function PromptDetail({ prompt }: { prompt: LoadedPrompt }) {
         </aside>
 
         <div className="lg:order-1 lg:col-span-2">
-          <PromptView body={prompt.body} />
+          <PromptView slug={prompt.slug} body={prompt.body} />
         </div>
       </div>
     </div>
