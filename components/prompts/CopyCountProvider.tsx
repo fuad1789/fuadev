@@ -30,6 +30,18 @@ export function useCopyCounts(): CopyCountsValue {
   return useContext(CopyCountsContext);
 }
 
+/**
+ * Takes the higher count for each slug. A fetch that started before a copy
+ * landed would otherwise pull the number back down a second after the visitor
+ * watched it go up, which reads as the button having failed.
+ */
+function mergeCounts(current: CopyCounts, incoming: CopyCounts): CopyCounts {
+  return Object.entries(incoming).reduce<Record<string, number>>(
+    (merged, [slug, count]) => ({ ...merged, [slug]: Math.max(merged[slug] ?? 0, count) }),
+    { ...current },
+  );
+}
+
 interface CopyCountProviderProps {
   /**
    * Counts read on the server so the badges are in the first paint. Apps
@@ -54,24 +66,26 @@ export default function CopyCountProvider({
   const [ready, setReady] = useState(hasServerCounts);
 
   useEffect(() => {
-    // The server already supplied the numbers; refetching would only make them
-    // jump a few seconds after the page settled.
-    if (hasServerCounts || !COPY_COUNTER_ENDPOINT) return;
+    if (!COPY_COUNTER_ENDPOINT) return;
 
     const controller = new AbortController();
 
+    // The server-rendered numbers come from a page that revalidates on an
+    // interval, so they can be a minute or two behind. This refetch corrects
+    // them in the background: the badge is already on screen from the first
+    // paint, and it only ever moves up to the live value.
     fetchCopyCounts({ signal: controller.signal })
       .then((loaded) => {
-        setCounts(loaded);
+        setCounts((current) => mergeCounts(current, loaded));
         setReady(true);
       })
       .catch(() => {
-        // An unreachable or undeployed script is not an error worth showing:
-        // `ready` stays false and the counts are simply never rendered.
+        // An unreachable or undeployed script is not an error worth showing.
+        // With server counts the badge keeps them; without, it stays hidden.
       });
 
     return () => controller.abort();
-  }, [hasServerCounts]);
+  }, []);
 
   const registerCopy = useCallback((slug: string) => {
     if (!COPY_COUNTER_ENDPOINT || !isCountableSlug(slug)) return;
