@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { fetchCopyCounts, isCountableSlug, sendCopyEvent, type CopyCounts } from '@/lib/copy-counter';
+import { readStoredCounts, storeCounts } from '@/lib/copy-counter.storage';
 
 interface CopyCountsValue {
   counts: CopyCounts;
@@ -59,6 +60,16 @@ export default function CopyCountProvider({
   const [counts, setCounts] = useState<CopyCounts>(initialCounts);
   const [ready, setReady] = useState(hasServerCounts);
 
+  // After mount, never during render: reading storage while rendering would
+  // disagree with the server-rendered markup and break hydration.
+  useEffect(() => {
+    const stored = readStoredCounts();
+    if (Object.keys(stored).length === 0) return;
+
+    setCounts((current) => mergeCounts(current, stored));
+    setReady(true);
+  }, []);
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -91,10 +102,13 @@ export default function CopyCountProvider({
         // The reply carries what the sheet actually stored, which is the only
         // number that survives a reload — adopt it over the local guess.
         if (recorded === null) return;
-        setCounts((current) => ({
-          ...current,
-          [slug]: Math.max(current[slug] ?? 0, recorded),
-        }));
+        setCounts((current) => {
+          const next = { ...current, [slug]: Math.max(current[slug] ?? 0, recorded) };
+          // Persist so the next page load starts from the confirmed number
+          // rather than whatever the page cache still holds.
+          storeCounts(next);
+          return next;
+        });
       })
       .catch(() => {
         // The copy itself already succeeded; a lost count is not worth surfacing.
