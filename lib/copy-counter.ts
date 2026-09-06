@@ -14,8 +14,15 @@ export const COPY_COUNTS_API_PATH = '/api/prompt-copies';
 /** How long a rendered page may keep showing the counts it was built with. */
 export const COPY_COUNTS_REVALIDATE_SECONDS = 60;
 
-/** How long the API route may serve a cached read from Apps Script. */
-export const COPY_COUNTS_API_CACHE_SECONDS = 10;
+/**
+ * How long the API route may serve a cached read from Apps Script. The ceiling
+ * only applies when nothing is written — a recorded copy drops the cache at
+ * once, so a visitor never reloads into a number older than their own click.
+ */
+export const COPY_COUNTS_API_CACHE_SECONDS = 30;
+
+/** Tag on every cached read, so a write can expire them all in one call. */
+export const COPY_COUNTS_CACHE_TAG = 'copy-counts';
 
 export type CopyCounts = Readonly<Record<string, number>>;
 

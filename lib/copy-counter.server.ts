@@ -1,5 +1,6 @@
 import {
   COPY_COUNTS_API_CACHE_SECONDS,
+  COPY_COUNTS_CACHE_TAG,
   COPY_COUNTS_REVALIDATE_SECONDS,
   isCountableSlug,
   toCopyCounts,
@@ -25,11 +26,17 @@ export function isCounterConfigured(): boolean {
 /**
  * Reads every count. Cached rather than bypassing the cache on purpose: Apps
  * Script takes two to four seconds, and without this each caller would pay it.
+ *
+ * The tag is what keeps the cache honest. Next serves a stale entry while it
+ * revalidates, so an expiry alone let a visitor reload into a number older than
+ * the copy they had just made — `recordCopy` expires this tag instead.
  */
 async function readCounts(revalidateSeconds: number): Promise<CopyCounts> {
   if (!ENDPOINT) return {};
 
-  const response = await fetch(ENDPOINT, { next: { revalidate: revalidateSeconds } });
+  const response = await fetch(ENDPOINT, {
+    next: { revalidate: revalidateSeconds, tags: [COPY_COUNTS_CACHE_TAG] },
+  });
   if (!response.ok) {
     throw new Error(`Copy counter responded with ${response.status}`);
   }

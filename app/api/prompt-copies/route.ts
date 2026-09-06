@@ -1,5 +1,6 @@
+import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
-import { isCountableSlug } from '@/lib/copy-counter';
+import { COPY_COUNTS_CACHE_TAG, isCountableSlug } from '@/lib/copy-counter';
 import { isCounterConfigured, readCachedCounts, recordCopy } from '@/lib/copy-counter.server';
 
 /**
@@ -51,6 +52,11 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (count === null) {
       return NextResponse.json({ ok: false, error: 'not recorded' });
     }
+
+    // Without this the cached read keeps serving the pre-copy number, and the
+    // visitor who just watched the count go up sees it drop again on reload.
+    revalidateTag(COPY_COUNTS_CACHE_TAG);
+
     return NextResponse.json({ ok: true, slug, count });
   } catch {
     return NextResponse.json({ ok: false, error: 'unavailable' });
