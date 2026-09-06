@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import CopyCountProvider from '@/components/prompts/CopyCountProvider';
 import PromptDetail from '@/components/prompts/PromptDetail';
+import { COPY_COUNTS_REVALIDATE_SECONDS, loadCopyCounts } from '@/lib/copy-counter';
 import { findPrompt, prompts } from '@/lib/prompts';
 import { loadPrompt } from '@/lib/prompts.server';
+
+/** Rebuilds the page periodically so the copy counts do not go stale. */
+export const revalidate = COPY_COUNTS_REVALIDATE_SECONDS;
 
 interface PromptPageProps {
   params: { slug: string };
@@ -38,7 +43,11 @@ export default async function PromptPage({ params }: PromptPageProps) {
   const prompt = findPrompt(params.slug);
   if (!prompt) notFound();
 
-  const loaded = await loadPrompt(prompt);
+  const [loaded, counts] = await Promise.all([loadPrompt(prompt), loadCopyCounts()]);
 
-  return <PromptDetail prompt={loaded} />;
+  return (
+    <CopyCountProvider initialCounts={counts}>
+      <PromptDetail prompt={loaded} />
+    </CopyCountProvider>
+  );
 }

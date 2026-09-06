@@ -46,16 +46,51 @@ function toCopyCounts(payload: unknown): CopyCounts {
   );
 }
 
+interface FetchOptions {
+  signal?: AbortSignal;
+  /**
+   * Server-side only. Caches the response for this many seconds instead of
+   * bypassing the cache — without it the surrounding route turns dynamic and
+   * every visitor waits on Apps Script, which answers in two to four seconds.
+   */
+  revalidateSeconds?: number;
+}
+
 /** Every count in one request. Throws on a network or parsing failure. */
-export async function fetchCopyCounts(signal?: AbortSignal): Promise<CopyCounts> {
+export async function fetchCopyCounts({
+  signal,
+  revalidateSeconds,
+}: FetchOptions = {}): Promise<CopyCounts> {
   if (!COPY_COUNTER_ENDPOINT) return {};
 
-  const response = await fetch(COPY_COUNTER_ENDPOINT, { signal, cache: 'no-store' });
+  const caching =
+    typeof revalidateSeconds === 'number'
+      ? { next: { revalidate: revalidateSeconds } }
+      : { cache: 'no-store' as const };
+
+  const response = await fetch(COPY_COUNTER_ENDPOINT, { signal, ...caching });
   if (!response.ok) {
     throw new Error(`Copy counter responded with ${response.status}`);
   }
 
   return toCopyCounts(await response.json());
+}
+
+/** How long a rendered page may keep showing the counts it was built with. */
+export const COPY_COUNTS_REVALIDATE_SECONDS = 60;
+
+/**
+ * Server-side read for the initial render, so the numbers arrive inside the
+ * HTML instead of appearing seconds later. It swallows failures on purpose: a
+ * counter that is down must not fail the build or blank the page — the badges
+ * are simply left off until the next revalidation succeeds.
+ */
+export async function loadCopyCounts(): Promise<CopyCounts> {
+  try {
+    return await fetchCopyCounts({ revalidateSeconds: COPY_COUNTS_REVALIDATE_SECONDS });
+  } catch {
+    return {};
+  }
 }
 
 /**

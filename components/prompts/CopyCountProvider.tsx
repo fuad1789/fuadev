@@ -30,21 +30,37 @@ export function useCopyCounts(): CopyCountsValue {
   return useContext(CopyCountsContext);
 }
 
+interface CopyCountProviderProps {
+  /**
+   * Counts read on the server so the badges are in the first paint. Apps
+   * Script takes two to four seconds to answer, so fetching from the browser
+   * instead would blank every number for that long on each page load.
+   */
+  initialCounts?: CopyCounts;
+  children: ReactNode;
+}
+
 /**
  * Holds the copy counts for a whole page. It lives above the buttons rather
- * than inside them so the list view makes one request instead of one per card,
- * and so a copy on one button updates every place the same prompt is shown.
+ * than inside them so one copy updates every place the same prompt is shown.
  */
-export default function CopyCountProvider({ children }: { children: ReactNode }) {
-  const [counts, setCounts] = useState<CopyCounts>({});
-  const [ready, setReady] = useState(false);
+export default function CopyCountProvider({
+  initialCounts = {},
+  children,
+}: CopyCountProviderProps) {
+  const hasServerCounts = Object.keys(initialCounts).length > 0;
+
+  const [counts, setCounts] = useState<CopyCounts>(initialCounts);
+  const [ready, setReady] = useState(hasServerCounts);
 
   useEffect(() => {
-    if (!COPY_COUNTER_ENDPOINT) return;
+    // The server already supplied the numbers; refetching would only make them
+    // jump a few seconds after the page settled.
+    if (hasServerCounts || !COPY_COUNTER_ENDPOINT) return;
 
     const controller = new AbortController();
 
-    fetchCopyCounts(controller.signal)
+    fetchCopyCounts({ signal: controller.signal })
       .then((loaded) => {
         setCounts(loaded);
         setReady(true);
@@ -55,7 +71,7 @@ export default function CopyCountProvider({ children }: { children: ReactNode })
       });
 
     return () => controller.abort();
-  }, []);
+  }, [hasServerCounts]);
 
   const registerCopy = useCallback((slug: string) => {
     if (!COPY_COUNTER_ENDPOINT || !isCountableSlug(slug)) return;

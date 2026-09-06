@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
+import CopyCountProvider from '@/components/prompts/CopyCountProvider';
 import PromptsIndex from '@/components/prompts/PromptsIndex';
+import { COPY_COUNTS_REVALIDATE_SECONDS, loadCopyCounts } from '@/lib/copy-counter';
 import { loadPrompts } from '@/lib/prompts.server';
+
+/** Rebuilds the page periodically so the copy counts do not go stale. */
+export const revalidate = COPY_COUNTS_REVALIDATE_SECONDS;
 
 const TITLE = 'Promptlar';
 const DESCRIPTION =
@@ -19,7 +24,11 @@ export const metadata: Metadata = {
 };
 
 export default async function PromptsPage() {
-  const prompts = await loadPrompts();
+  const [prompts, counts] = await Promise.all([loadPrompts(), loadCopyCounts()]);
 
-  return <PromptsIndex prompts={prompts} />;
+  return (
+    <CopyCountProvider initialCounts={counts}>
+      <PromptsIndex prompts={prompts} />
+    </CopyCountProvider>
+  );
 }
