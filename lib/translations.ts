@@ -40,6 +40,7 @@ export interface Translations {
     demos: string;
     skills: string;
     prompts: string;
+    guides: string;
     contact: string;
     skip: string;
   };
@@ -101,6 +102,27 @@ export interface Translations {
       updated: string;
     };
   };
+  /** Written companions to the videos — chrome only, the guides live in lib/guides.ts. */
+  guides: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    lede: string;
+    seeAll: string;
+    open: string;
+    back: string;
+    /** Follows the number: "8 dəq" / "8 min". */
+    minutes: string;
+    onThisPage: string;
+    /** Label above the short address announced in the video. */
+    shortLink: string;
+    meta: {
+      category: string;
+      readTime: string;
+      level: string;
+      updated: string;
+    };
+  };
   skills: {
     eyebrow: string;
     title: string;
@@ -138,6 +160,7 @@ export const translations: Record<Language, Translations> = {
       demos: "Konseptlər",
       skills: "Bacarıqlar",
       prompts: "Promptlar",
+      guides: "Bələdçilər",
       contact: "Əlaqə",
       skip: "Məzmuna keç",
     },
@@ -399,6 +422,25 @@ export const translations: Record<Language, Translations> = {
         updated: "Yeniləndi",
       },
     },
+    guides: {
+      eyebrow: "Bələdçilər",
+      title: "Addım-addım bələdçilər",
+      subtitle:
+        "Videolarda göstərdiyim prosesin yazılı versiyası — dayandırmadan, geri sarımadan oxuya biləcəyin formada.",
+      lede: "Video izləyərkən əmri və ya menyu adını yaddaşda saxlamaq çətindir. Burada hər addım yazılıdır, kopyalana bilər və ən çox buraxılan səhvlər ayrıca göstərilib.",
+      seeAll: "Bütün bələdçilər",
+      open: "Bələdçini aç",
+      back: "Bələdçilər",
+      minutes: "dəq",
+      onThisPage: "Bu səhifədə",
+      shortLink: "Qısa link",
+      meta: {
+        category: "Mövzu",
+        readTime: "Oxuma vaxtı",
+        level: "Səviyyə",
+        updated: "Yeniləndi",
+      },
+    },
     skills: {
       eyebrow: "Bacarıqlar",
       title: "Nə ilə işləyirəm",
@@ -449,6 +491,7 @@ export const translations: Record<Language, Translations> = {
       demos: "Concepts",
       skills: "Skills",
       prompts: "Prompts",
+      guides: "Guides",
       contact: "Contact",
       skip: "Skip to content",
     },
@@ -707,6 +750,25 @@ export const translations: Record<Language, Translations> = {
         category: "Category",
         words: "Word count",
         models: "Models",
+        updated: "Updated",
+      },
+    },
+    guides: {
+      eyebrow: "Guides",
+      title: "Step-by-step guides",
+      subtitle:
+        "The written version of what I show in the videos — in a form you can read without pausing and rewinding.",
+      lede: "Holding a command or a menu name in your head while a video plays is hard. Here every step is written down, ready to copy, with the mistakes people actually make called out separately.",
+      seeAll: "All guides",
+      open: "Open guide",
+      back: "Guides",
+      minutes: "min",
+      onThisPage: "On this page",
+      shortLink: "Short link",
+      meta: {
+        category: "Topic",
+        readTime: "Reading time",
+        level: "Level",
         updated: "Updated",
       },
     },

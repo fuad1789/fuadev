@@ -70,6 +70,33 @@ The site uses Tailwind CSS. You can customize colors, spacing, and other styles 
 - Component files for component-specific styles
 - `app/globals.css` for global styles
 
+## Guides
+
+`/guides` is the written companion to the videos — not a blog. There are no
+publication dates on display and no feed: a guide is edited in place when the
+platform it describes changes.
+
+Adding one takes two steps:
+
+1. Write `content/guides/<slug>.az.md` and `content/guides/<slug>.en.md`. Both
+   files are required — a missing one fails the build instead of shipping a page
+   that is blank in one language. Guides are parsed with the rich Markdown
+   option, so inline `code`, `[links](https://example.com)` and fenced blocks
+   all work; prompts are not, and keep rendering backticks literally.
+2. Add the entry to the registry in `lib/guides.ts`. The registry is the whole
+   route table — `generateStaticParams` reads it, so anything missing from it is
+   a 404 at build time.
+
+Top-level headings (`#`) become the table of contents in the sidebar, with
+anchors transliterated from Azerbaijani (`# Öz domenin` → `#oz-domenin`).
+
+### Short links
+
+A guide can advertise a short path — `shortPath: '/vercel'` — for reading out
+loud in a video. The redirect itself lives in `next.config.js` and is temporary
+(307) on purpose, so the spoken link can be re-pointed at a newer guide later.
+Keep the two in sync when you add one.
+
 ## Prompt Copy Counter
 
 Each prompt shows how many times it has been copied. The counts live in a Google

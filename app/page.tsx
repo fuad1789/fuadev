@@ -7,6 +7,7 @@ import Intro from '@/components/Intro';
 import Projects from '@/components/Projects';
 import Demos from '@/components/Demos';
 import Prompts from '@/components/Prompts';
+import Guides from '@/components/Guides';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -23,6 +24,7 @@ export default function Home() {
         <Demos />
         <Skills />
         <Prompts />
+        <Guides />
         <Contact />
       </main>
 

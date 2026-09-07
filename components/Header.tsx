@@ -19,13 +19,14 @@ export default function Header() {
     { href: section('#work'), label: t.nav.work, alwaysVisible: false },
     { href: section('#concepts'), label: t.nav.demos, alwaysVisible: false },
     { href: section('#skills'), label: t.nav.skills, alwaysVisible: false },
+    { href: '/guides', label: t.nav.guides, alwaysVisible: true },
     { href: '/prompts', label: t.nav.prompts, alwaysVisible: true },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-md">
       <div className="container-page">
-        <div className="flex h-header items-center justify-between gap-4">
+        <div className="flex h-header items-center justify-between gap-2 sm:gap-4">
           <Link
             href={isHome ? '#top' : '/'}
             className="text-[0.9375rem] font-semibold tracking-tight"
@@ -39,7 +40,9 @@ export default function Header() {
                 <li key={item.href} className={item.alwaysVisible ? '' : 'hidden md:block'}>
                   <Link
                     href={item.href}
-                    className={`rounded-lg px-3 py-2 text-sm transition-colors hover:bg-muted hover:text-fg ${
+                    // Tighter on phones: two always-visible items, the logo and
+                    // the language switch have to fit a 360px viewport.
+                    className={`whitespace-nowrap rounded-lg px-2 py-2 text-[0.8125rem] transition-colors hover:bg-muted hover:text-fg sm:px-3 sm:text-sm ${
                       item.alwaysVisible ? 'font-medium text-fg' : 'text-fg-2'
                     }`}
                   >
