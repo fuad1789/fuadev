@@ -37,6 +37,16 @@ function Block({ block }: { block: MarkdownBlock }) {
     );
   }
 
+  if (block.type === 'code') {
+    // Prompts are parsed without the rich option, so this is unreachable today —
+    // it exists so the block union stays exhaustively handled.
+    return (
+      <pre className="mt-3 overflow-x-auto rounded-lg border border-line bg-muted px-4 py-3 font-mono text-xs leading-relaxed text-fg-2">
+        {block.text}
+      </pre>
+    );
+  }
+
   if (block.type === 'list') {
     const ListTag = block.ordered ? 'ol' : 'ul';
     return (
