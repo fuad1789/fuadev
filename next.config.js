@@ -23,9 +23,6 @@ const nextConfig = {
     if (!origin) return [];
     return [
       { source: '/manat', destination: `${origin}/manat` },
-      // Client navigation to the zone's home asks for /manat.rsc (RSC suffix is
-      // added before rewrites); the zone serves that payload as /manat/index.rsc.
-      { source: '/manat.rsc', destination: `${origin}/manat/index.rsc` },
       { source: '/manat/:path+', destination: `${origin}/manat/:path+` },
     ];
   },
