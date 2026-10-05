@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 /* One neutral grotesk across the whole UI — the modern product-site default. */
@@ -11,6 +12,8 @@ const inter = Inter({
 });
 
 const SITE_URL = "https://fuadev.com";
+/* Shared with the /manat zone so one GA4 property counts the whole site. */
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const TITLE = "Fuad Bağıyev — Full-stack developer";
 const DESCRIPTION =
   "Full-stack developer. Azeri Edu (LMS), Payla.az marketplace və SDU-nun rəsmi portalları daxil olmaqla production mühitində işləyən məhsullar qururam.";
@@ -84,6 +87,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </body>
+      {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
   );
 }
