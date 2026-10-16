@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { SiInstagram } from 'react-icons/si';
 import { useLanguage } from '@/app/providers';
 
 /**
@@ -76,6 +77,34 @@ export default function Intro() {
           className="inline-flex items-center rounded-lg border border-line bg-bg px-5 py-2.5 text-sm font-medium text-fg shadow-sm transition-colors hover:bg-muted"
         >
           {t.intro.secondaryButton}
+        </a>
+      </motion.div>
+
+      {/* Wrapper carries the entrance animation so its inline transform
+          doesn't override the card's hover lift. */}
+      <motion.div {...rise(0.23)} className="mt-8 max-w-xl">
+        <a
+          href={t.instagram.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="card card-interactive group flex items-center gap-4 rounded-2xl p-4"
+        >
+          <span
+            aria-hidden
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#feda75] via-[#d62976] to-[#4f5bd5] text-white"
+          >
+            <SiInstagram className="h-5 w-5" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-semibold">{t.instagram.handle}</span>
+            <span className="mt-0.5 block text-sm leading-snug text-fg-2">{t.instagram.pitch}</span>
+          </span>
+          <span className="hidden shrink-0 items-center gap-1 rounded-lg bg-fg px-3.5 py-2 text-sm font-medium text-white transition-opacity group-hover:opacity-90 sm:inline-flex">
+            {t.instagram.cta}
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+              →
+            </span>
+          </span>
         </a>
       </motion.div>
 

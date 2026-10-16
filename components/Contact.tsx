@@ -8,6 +8,7 @@ export default function Contact() {
   const { t } = useLanguage();
 
   const secondaryLinks = [
+    { label: t.instagram.label, value: t.instagram.handle, href: t.instagram.url },
     { label: t.contact.githubLabel, value: t.contact.githubHandle, href: t.contact.githubUrl },
     {
       label: t.contact.linkedinLabel,

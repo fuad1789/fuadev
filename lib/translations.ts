@@ -146,6 +146,14 @@ export interface Translations {
     linkedinHandle: string;
     linkedinUrl: string;
   };
+  /** Instagram brand channel — surfaced in the intro, header and contact. */
+  instagram: {
+    label: string;
+    handle: string;
+    url: string;
+    pitch: string;
+    cta: string;
+  };
   footer: {
     tagline: string;
     backToTop: string;
@@ -478,6 +486,13 @@ export const translations: Record<Language, Translations> = {
       linkedinHandle: "Fuad Bağıyev",
       linkedinUrl: "https://www.linkedin.com/in/fuad-bağıyev-b70069238/",
     },
+    instagram: {
+      label: "Instagram",
+      handle: "@fuad_developer",
+      url: "https://www.instagram.com/fuad_developer/",
+      pitch: "AI, kod və real layihələrin pərdəarxası — Instagram-da paylaşıram.",
+      cta: "İzlə",
+    },
     footer: {
       tagline: "Full-stack developer · Sumqayıt, Azərbaycan",
       backToTop: "Yuxarı",
@@ -808,6 +823,13 @@ export const translations: Record<Language, Translations> = {
       linkedinLabel: "LinkedIn",
       linkedinHandle: "Fuad Bagiyev",
       linkedinUrl: "https://www.linkedin.com/in/fuad-bağıyev-b70069238/",
+    },
+    instagram: {
+      label: "Instagram",
+      handle: "@fuad_developer",
+      url: "https://www.instagram.com/fuad_developer/",
+      pitch: "AI, code and behind the scenes of real projects — I share it on Instagram.",
+      cta: "Follow",
     },
     footer: {
       tagline: "Full-stack developer · Sumgayit, Azerbaijan",

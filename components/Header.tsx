@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SiInstagram } from 'react-icons/si';
 import { useLanguage } from '@/app/providers';
 import type { Language } from '@/lib/translations';
 
@@ -53,7 +54,18 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <a
+              href={t.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${t.instagram.label} ${t.instagram.handle}`}
+              title={t.instagram.handle}
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-fg-2 transition-colors hover:bg-muted hover:text-[#d62976]"
+            >
+              <SiInstagram aria-hidden className="h-4 w-4" />
+            </a>
+
             {/* Segmented language control */}
             <div className="flex items-center rounded-lg border border-line bg-muted p-0.5">
               {LANGUAGES.map((lang) => (
