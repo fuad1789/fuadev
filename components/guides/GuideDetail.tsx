@@ -70,8 +70,8 @@ export default function GuideDetail({ guide }: { guide: LoadedGuide }) {
         ))}
       </dl>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        <aside className="lg:order-2">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <aside className="min-w-0 lg:order-2">
           <div className="card p-5 lg:sticky lg:top-24">
             <h2 className="text-sm font-semibold">{t.guides.onThisPage}</h2>
 
@@ -105,7 +105,7 @@ export default function GuideDetail({ guide }: { guide: LoadedGuide }) {
           </div>
         </aside>
 
-        <article className="lg:order-1 lg:col-span-2">
+        <article className="min-w-0 lg:order-1 lg:col-span-2">
           <GuideBody blocks={blocks} />
         </article>
       </div>
