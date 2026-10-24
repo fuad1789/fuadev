@@ -23,6 +23,7 @@ const OUT_DIR = path.resolve(__dirname, "..", "public", "screenshots");
 const TARGETS = [
   { url: "https://azeri.edu.az", file: "azeri-edu.png" },
   { url: "https://payla.az", file: "paylaaz.png", manual: true },
+  { url: "https://sdu.edu.az", file: "sdu.png", waitFor: 6000 },
   { url: "https://karyera.sdu.edu.az", file: "sdukaryera.png" },
   { url: "https://unim.az", file: "unimaz.png", manual: true },
   { url: "https://github.com/fuad1789/Loyaltybar", file: "loyaltybar.png", manual: true },

@@ -12,8 +12,8 @@ export const contentType = 'image/png';
  */
 const STATS = [
   { value: '4+', label: 'YEARS' },
-  { value: '8', label: 'PRODUCTION PROJECTS' },
-  { value: '2', label: 'OFFICIAL PORTALS' },
+  { value: '9', label: 'PRODUCTION PROJECTS' },
+  { value: '3', label: 'OFFICIAL PORTALS' },
   { value: '2.000', label: 'SUPVC GRANT' },
 ];
 

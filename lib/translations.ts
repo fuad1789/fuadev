@@ -183,8 +183,8 @@ export const translations: Record<Language, Translations> = {
       availability: "Yeni layihələrə açığam",
       stats: [
         { value: "4+", label: "İl təcrübə" },
-        { value: "8", label: "Production layihə" },
-        { value: "2", label: "Rəsmi dövlət portalı" },
+        { value: "9", label: "Production layihə" },
+        { value: "3", label: "Rəsmi dövlət portalı" },
         { value: "5.000 ₼", label: "Qazanılan qrant" },
       ],
     },
@@ -231,6 +231,20 @@ export const translations: Record<Language, Translations> = {
             value: "2.000 ₼",
             note: "İnkubasiya · 2024",
           },
+        },
+        {
+          name: "sdu.edu.az",
+          kind: "Rəsmi Universitet Saytı",
+          tag: "SDU",
+          description:
+            "Sumqayıt Dövlət Universitetinin rəsmi veb saytı. Fakültə və ixtisaslar, qəbul (bakalavr, magistratura, doktorantura, beynəlxalq tələbələr), tədris və tədqiqat, tələbə həyatı və xəbərlər bölmələrini əhatə edir. Xəbərlər admin paneli üzərindən idarə olunur.",
+          highlight:
+            "Universitetin əsas rəqəmsal üzü — LMS, karyera və dayanıqlı inkişaf portallarını vahid giriş nöqtəsində birləşdirən, SumAI süni intellekt köməkçisinə hazır platforma.",
+          status: "Rəsmi",
+          statusTone: "official",
+          stack: "Next.js · Admin panel · AZ/EN",
+          linkUrl: "https://sdu.edu.az",
+          image: "/sdu.png",
         },
         {
           name: "karyera.sdu.edu.az",
@@ -521,8 +535,8 @@ export const translations: Record<Language, Translations> = {
       availability: "Available for new projects",
       stats: [
         { value: "4+", label: "Years experience" },
-        { value: "8", label: "Production projects" },
-        { value: "2", label: "Official state portals" },
+        { value: "9", label: "Production projects" },
+        { value: "3", label: "Official state portals" },
         { value: "5.000 ₼", label: "Grants won" },
       ],
     },
@@ -569,6 +583,20 @@ export const translations: Record<Language, Translations> = {
             value: "2.000 ₼",
             note: "Incubated · 2024",
           },
+        },
+        {
+          name: "sdu.edu.az",
+          kind: "Official University Website",
+          tag: "SDU",
+          description:
+            "The official website of Sumgayit State University. Covers faculties and programs, admissions (bachelor's, master's, doctoral, international students), teaching and research, student life, and news. News is managed through an admin panel.",
+          highlight:
+            "The university's main digital front door — a single entry point tying together the LMS, career and sustainability portals, ready for the SumAI assistant.",
+          status: "Official",
+          statusTone: "official",
+          stack: "Next.js · Admin panel · AZ/EN",
+          linkUrl: "https://sdu.edu.az",
+          image: "/sdu.png",
         },
         {
           name: "karyera.sdu.edu.az",
